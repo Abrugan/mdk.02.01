@@ -1,0 +1,77 @@
+//1
+
+; <<>> DiG 9.18.30-0ubuntu0.22.04.2-Ubuntu <<>> vk.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 31370
+;; flags: qr rd ra; QUERY: 1, ANSWER: 6, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;vk.com.				IN	A
+
+;; ANSWER SECTION:
+vk.com.			662	IN	A	87.240.132.67
+vk.com.			662	IN	A	87.240.132.78
+vk.com.			662	IN	A	87.240.137.164
+vk.com.			662	IN	A	93.186.225.194
+vk.com.			662	IN	A	87.240.129.133
+vk.com.			662	IN	A	87.240.132.72
+
+;; Query time: 71 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+;; WHEN: Thu Mar 06 07:11:13 UTC 2025
+;; MSG SIZE  rcvd: 131
+
+//2
+
+; <<>> DiG 9.18.30-0ubuntu0.22.04.2-Ubuntu <<>> vk.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 16767
+;; flags: qr rd ra; QUERY: 1, ANSWER: 6, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;vk.com.				IN	A
+
+;; ANSWER SECTION:
+vk.com.			239	IN	A	87.240.132.72
+vk.com.			239	IN	A	93.186.225.194
+vk.com.			239	IN	A	87.240.137.164
+vk.com.			239	IN	A	87.240.129.133
+vk.com.			239	IN	A	87.240.132.78
+vk.com.			239	IN	A	87.240.132.67
+
+;; Query time: 71 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+;; WHEN: Thu Mar 06 07:12:35 UTC 2025
+;; MSG SIZE  rcvd: 131
+
+//3
+
+; <<>> DiG 9.18.30-0ubuntu0.22.04.2-Ubuntu <<>> vk.com
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50128
+;; flags: qr rd ra; QUERY: 1, ANSWER: 6, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;vk.com.				IN	A
+
+;; ANSWER SECTION:
+vk.com.			237	IN	A	87.240.132.72
+vk.com.			237	IN	A	87.240.137.164
+vk.com.			237	IN	A	93.186.225.194
+vk.com.			237	IN	A	87.240.129.133
+vk.com.			237	IN	A	87.240.132.67
+vk.com.			237	IN	A	87.240.132.78
+
+;; Query time: 0 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53) (UDP)
+;; WHEN: Thu Mar 06 07:12:37 UTC 2025
+;; MSG SIZE  rcvd: 131
