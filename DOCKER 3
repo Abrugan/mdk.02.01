@@ -1,0 +1,810 @@
+u26@u26-VirtualBox:~$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+koriks       0.1       eaf8224d94e7   23 hours ago   186MB
+joomla       latest    29595f1bada0   6 days ago     760MB
+adminer      latest    d1ce2535a665   10 days ago    121MB
+php          latest    cd0e124311ea   2 weeks ago    547MB
+tomcat       latest    88b0f1cee84c   3 weeks ago    519MB
+postgres     latest    76e3e031d245   4 weeks ago    438MB
+mariadb      latest    a914eff5d2eb   6 weeks ago    336MB
+alpine       latest    aded1e1a5b37   6 weeks ago    7.83MB
+wordpress    latest    52bb3e73152a   6 weeks ago    701MB
+python       latest    e6c8fe2e1108   7 weeks ago    1.02GB
+ubuntu       24.04     a04dc4851cbc   2 months ago   78.1MB
+ubuntu       22.04     a24be041d957   2 months ago   77.9MB
+phpmyadmin   latest    052506f2de4d   2 months ago   570MB
+httpd        latest    83d938198316   2 months ago   148MB
+mysql        latest    fa262c3a6564   2 months ago   797MB
+redis        latest    ad4b31aa2de6   2 months ago   117MB
+openjdk      latest    71260f256d19   2 years ago    470MB
+u26@u26-VirtualBox:~$ apt update 
+Чтение списков пакетов… Готово
+E: Не удалось открыть файл блокировки /var/lib/apt/lists/lock - open (13: Отказано в доступе)
+E: Невозможно заблокировать каталог /var/lib/apt/lists/
+W: Проблема при удалении файла /var/cache/apt/pkgcache.bin - RemoveCaches (13: Отказано в доступе)
+W: Проблема при удалении файла /var/cache/apt/srcpkgcache.bin - RemoveCaches (13: Отказано в доступе)
+u26@u26-VirtualBox:~$ apt upgrade
+E: Не удалось открыть файл блокировки /var/lib/dpkg/lock-frontend - open (13: Отказано в доступе)
+E: Невозможно получить блокировку внешнего интерфейса dpkg (/var/lib/dpkg/lock-frontend); у вас есть права суперпользователя?
+u26@u26-VirtualBox:~$ docker run -if a24be041d957
+unknown shorthand flag: 'f' in -f
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run 'docker run --help' for more information
+u26@u26-VirtualBox:~$ docker run -it a24be041d957
+root@651d0bdc1031:/# apt update
+Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
+Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+Get:4 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [3892 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1792 kB]
+Get:7 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [2737 kB]
+Get:8 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [47.7 kB]
+Get:9 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1239 kB]    
+Get:10 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]                                                    
+Get:11 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]                                                   
+Get:12 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]                                                   
+Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [4049 kB]                                          
+Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1538 kB]                                            
+Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [3045 kB]                                                
+Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [55.7 kB]                                          
+Get:17 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [35.2 kB]                                          
+Get:18 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [82.7 kB]                                              
+Fetched 37.1 MB in 24s (1523 kB/s)                                                                                                 
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+11 packages can be upgraded. Run 'apt list --upgradable' to see them.
+root@651d0bdc1031:/# apt upgrate
+E: Invalid operation upgrate
+root@651d0bdc1031:/# apt upgrade
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Calculating upgrade... Done
+The following packages will be upgraded:
+  libc-bin libc6 libcap2 libgnutls30 libgssapi-krb5-2 libk5crypto3 libkrb5-3 libkrb5support0 libseccomp2 libssl3 libtasn1-6
+11 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Need to get 7544 kB of archives.
+After this operation, 5120 B of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libc6 amd64 2.35-0ubuntu3.9 [3235 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libc-bin amd64 2.35-0ubuntu3.9 [706 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcap2 amd64 1:2.44-1ubuntu0.22.04.2 [18.3 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libk5crypto3 amd64 1.19.2-2ubuntu0.6 [86.5 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libkrb5support0 amd64 1.19.2-2ubuntu0.6 [32.5 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libkrb5-3 amd64 1.19.2-2ubuntu0.6 [357 kB]
+Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libgssapi-krb5-2 amd64 1.19.2-2ubuntu0.6 [145 kB]
+Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libssl3 amd64 3.0.2-0ubuntu1.19 [1905 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libtasn1-6 amd64 4.18.0-4ubuntu0.1 [43.5 kB]
+Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libgnutls30 amd64 3.7.3-4ubuntu1.6 [969 kB]
+Get:11 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libseccomp2 amd64 2.5.3-2ubuntu3~22.04.1 [47.4 kB]
+Fetched 7544 kB in 2s (4045 kB/s)  
+debconf: delaying package configuration, since apt-utils is not installed
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libc6_2.35-0ubuntu3.9_amd64.deb ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/Front
+End/Dialog.pm line 78.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/l
+ocal/lib/x86_64-linux-gnu/perl/5.34.0 /usr/local/share/perl/5.34.0 /usr/lib/x86_64-linux-gnu/perl5/5.34 /usr/share/perl5 /usr/lib/x8
+6_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.34 /usr/share/perl/5.34 /usr/local/lib/site_perl) at /usr/share/perl5/Debc
+onf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Unpacking libc6:amd64 (2.35-0ubuntu3.9) over (2.35-0ubuntu3.8) ...
+Setting up libc6:amd64 (2.35-0ubuntu3.9) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/Front
+End/Dialog.pm line 78.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/l
+ocal/lib/x86_64-linux-gnu/perl/5.34.0 /usr/local/share/perl/5.34.0 /usr/lib/x86_64-linux-gnu/perl5/5.34 /usr/share/perl5 /usr/lib/x8
+6_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.34 /usr/share/perl/5.34 /usr/local/lib/site_perl) at /usr/share/perl5/Debc
+onf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libc-bin_2.35-0ubuntu3.9_amd64.deb ...
+Unpacking libc-bin (2.35-0ubuntu3.9) over (2.35-0ubuntu3.8) ...
+Setting up libc-bin (2.35-0ubuntu3.9) ...
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libcap2_1%3a2.44-1ubuntu0.22.04.2_amd64.deb ...
+Unpacking libcap2:amd64 (1:2.44-1ubuntu0.22.04.2) over (1:2.44-1ubuntu0.22.04.1) ...
+Setting up libcap2:amd64 (1:2.44-1ubuntu0.22.04.2) ...
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libk5crypto3_1.19.2-2ubuntu0.6_amd64.deb ...
+Unpacking libk5crypto3:amd64 (1.19.2-2ubuntu0.6) over (1.19.2-2ubuntu0.4) ...
+Setting up libk5crypto3:amd64 (1.19.2-2ubuntu0.6) ...
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libkrb5support0_1.19.2-2ubuntu0.6_amd64.deb ...
+Unpacking libkrb5support0:amd64 (1.19.2-2ubuntu0.6) over (1.19.2-2ubuntu0.4) ...
+Setting up libkrb5support0:amd64 (1.19.2-2ubuntu0.6) ...
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libkrb5-3_1.19.2-2ubuntu0.6_amd64.deb ...
+Unpacking libkrb5-3:amd64 (1.19.2-2ubuntu0.6) over (1.19.2-2ubuntu0.4) ...
+Setting up libkrb5-3:amd64 (1.19.2-2ubuntu0.6) ...
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libgssapi-krb5-2_1.19.2-2ubuntu0.6_amd64.deb ...
+Unpacking libgssapi-krb5-2:amd64 (1.19.2-2ubuntu0.6) over (1.19.2-2ubuntu0.4) ...
+Setting up libgssapi-krb5-2:amd64 (1.19.2-2ubuntu0.6) ...
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libssl3_3.0.2-0ubuntu1.19_amd64.deb ...
+Unpacking libssl3:amd64 (3.0.2-0ubuntu1.19) over (3.0.2-0ubuntu1.18) ...
+Setting up libssl3:amd64 (3.0.2-0ubuntu1.19) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/Front
+End/Dialog.pm line 78.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/l
+ocal/lib/x86_64-linux-gnu/perl/5.34.0 /usr/local/share/perl/5.34.0 /usr/lib/x86_64-linux-gnu/perl5/5.34 /usr/share/perl5 /usr/lib/x8
+6_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.34 /usr/share/perl/5.34 /usr/local/lib/site_perl) at /usr/share/perl5/Debc
+onf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libtasn1-6_4.18.0-4ubuntu0.1_amd64.deb ...
+Unpacking libtasn1-6:amd64 (4.18.0-4ubuntu0.1) over (4.18.0-4build1) ...
+Setting up libtasn1-6:amd64 (4.18.0-4ubuntu0.1) ...
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libgnutls30_3.7.3-4ubuntu1.6_amd64.deb ...
+Unpacking libgnutls30:amd64 (3.7.3-4ubuntu1.6) over (3.7.3-4ubuntu1.5) ...
+Setting up libgnutls30:amd64 (3.7.3-4ubuntu1.6) ...
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../libseccomp2_2.5.3-2ubuntu3~22.04.1_amd64.deb ...
+Unpacking libseccomp2:amd64 (2.5.3-2ubuntu3~22.04.1) over (2.5.3-2ubuntu2) ...
+Setting up libseccomp2:amd64 (2.5.3-2ubuntu3~22.04.1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.9) ...
+root@651d0bdc1031:/# apt install iproute2
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libatm1 libbpf0 libbsd0 libcap2-bin libelf1 libmd0 libmnl0 libpam-cap libxtables12
+Suggested packages:
+  iproute2-doc
+The following NEW packages will be installed:
+  iproute2 libatm1 libbpf0 libbsd0 libcap2-bin libelf1 libmd0 libmnl0 libpam-cap libxtables12
+0 upgraded, 10 newly installed, 0 to remove and 0 not upgraded.
+Need to get 1430 kB of archives.
+After this operation, 4151 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libelf1 amd64 0.186-1ubuntu0.1 [51.1 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libbpf0 amd64 1:0.5.0-1ubuntu22.04.1 [140 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy/main amd64 libmd0 amd64 1.0.4-1build1 [23.0 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy/main amd64 libbsd0 amd64 0.11.5-1 [44.8 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy/main amd64 libmnl0 amd64 1.0.4-3build2 [13.2 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libxtables12 amd64 1.8.7-1ubuntu5.2 [31.3 kB]
+Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcap2-bin amd64 1:2.44-1ubuntu0.22.04.2 [26.0 kB]
+Get:8 http://archive.ubuntu.com/ubuntu jammy/main amd64 iproute2 amd64 5.15.0-1ubuntu2 [1070 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy/main amd64 libatm1 amd64 1:2.5.1-4build2 [22.8 kB]
+Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpam-cap amd64 1:2.44-1ubuntu0.22.04.2 [7930 B]
+Fetched 1430 kB in 2s (830 kB/s)      
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libelf1:amd64.
+(Reading database ... 4393 files and directories currently installed.)
+Preparing to unpack .../0-libelf1_0.186-1ubuntu0.1_amd64.deb ...
+Unpacking libelf1:amd64 (0.186-1ubuntu0.1) ...
+Selecting previously unselected package libbpf0:amd64.
+Preparing to unpack .../1-libbpf0_1%3a0.5.0-1ubuntu22.04.1_amd64.deb ...
+Unpacking libbpf0:amd64 (1:0.5.0-1ubuntu22.04.1) ...
+Selecting previously unselected package libmd0:amd64.
+Preparing to unpack .../2-libmd0_1.0.4-1build1_amd64.deb ...
+Unpacking libmd0:amd64 (1.0.4-1build1) ...
+Selecting previously unselected package libbsd0:amd64.
+Preparing to unpack .../3-libbsd0_0.11.5-1_amd64.deb ...
+Unpacking libbsd0:amd64 (0.11.5-1) ...
+Selecting previously unselected package libmnl0:amd64.
+Preparing to unpack .../4-libmnl0_1.0.4-3build2_amd64.deb ...
+Unpacking libmnl0:amd64 (1.0.4-3build2) ...
+Selecting previously unselected package libxtables12:amd64.
+Preparing to unpack .../5-libxtables12_1.8.7-1ubuntu5.2_amd64.deb ...
+Unpacking libxtables12:amd64 (1.8.7-1ubuntu5.2) ...
+Selecting previously unselected package libcap2-bin.
+Preparing to unpack .../6-libcap2-bin_1%3a2.44-1ubuntu0.22.04.2_amd64.deb ...
+Unpacking libcap2-bin (1:2.44-1ubuntu0.22.04.2) ...
+Selecting previously unselected package iproute2.
+Preparing to unpack .../7-iproute2_5.15.0-1ubuntu2_amd64.deb ...
+Unpacking iproute2 (5.15.0-1ubuntu2) ...
+Selecting previously unselected package libatm1:amd64.
+Preparing to unpack .../8-libatm1_1%3a2.5.1-4build2_amd64.deb ...
+Unpacking libatm1:amd64 (1:2.5.1-4build2) ...
+Selecting previously unselected package libpam-cap:amd64.
+Preparing to unpack .../9-libpam-cap_1%3a2.44-1ubuntu0.22.04.2_amd64.deb ...
+Unpacking libpam-cap:amd64 (1:2.44-1ubuntu0.22.04.2) ...
+Setting up libatm1:amd64 (1:2.5.1-4build2) ...
+Setting up libcap2-bin (1:2.44-1ubuntu0.22.04.2) ...
+Setting up libmnl0:amd64 (1.0.4-3build2) ...
+Setting up libxtables12:amd64 (1.8.7-1ubuntu5.2) ...
+Setting up libmd0:amd64 (1.0.4-1build1) ...
+Setting up libbsd0:amd64 (0.11.5-1) ...
+Setting up libelf1:amd64 (0.186-1ubuntu0.1) ...
+Setting up libpam-cap:amd64 (1:2.44-1ubuntu0.22.04.2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/Front
+End/Dialog.pm line 78.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/l
+ocal/lib/x86_64-linux-gnu/perl/5.34.0 /usr/local/share/perl/5.34.0 /usr/lib/x86_64-linux-gnu/perl5/5.34 /usr/share/perl5 /usr/lib/x8
+6_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.34 /usr/share/perl/5.34 /usr/local/lib/site_perl) at /usr/share/perl5/Debc
+onf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Setting up libbpf0:amd64 (1:0.5.0-1ubuntu22.04.1) ...
+Setting up iproute2 (5.15.0-1ubuntu2) ...
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/Front
+End/Dialog.pm line 78.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC contains: /etc/perl /usr/l
+ocal/lib/x86_64-linux-gnu/perl/5.34.0 /usr/local/share/perl/5.34.0 /usr/lib/x86_64-linux-gnu/perl5/5.34 /usr/share/perl5 /usr/lib/x8
+6_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.34 /usr/share/perl/5.34 /usr/local/lib/site_perl) at /usr/share/perl5/Debc
+onf/FrontEnd/Readline.pm line 7.)
+debconf: falling back to frontend: Teletype
+Processing triggers for libc-bin (2.35-0ubuntu3.9) ...
+root@651d0bdc1031:/# apt install iputils-ping
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+  iputils-ping
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 42.9 kB of archives.
+After this operation, 116 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 iputils-ping amd64 3:20211215-1 [42.9 kB]
+Fetched 42.9 kB in 1s (35.7 kB/s)       
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package iputils-ping.
+(Reading database ... 4637 files and directories currently installed.)
+Preparing to unpack .../iputils-ping_3%3a20211215-1_amd64.deb ...
+Unpacking iputils-ping (3:20211215-1) ...
+Setting up iputils-ping (3:20211215-1) ...
+root@651d0bdc1031:/# apt install dnsutils    
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  bind9-dnsutils bind9-host bind9-libs libedit2 libicu70 libjson-c5 liblmdb0 libmaxminddb0 libnghttp2-14 libuv1 libxml2
+Suggested packages:
+  mmdb-bin
+The following NEW packages will be installed:
+  bind9-dnsutils bind9-host bind9-libs dnsutils libedit2 libicu70 libjson-c5 liblmdb0 libmaxminddb0 libnghttp2-14 libuv1 libxml2
+0 upgraded, 12 newly installed, 0 to remove and 0 not upgraded.
+Need to get 13.2 MB of archives.
+After this operation, 42.8 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 libicu70 amd64 70.1-2 [10.6 MB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libjson-c5 amd64 0.15-3~ubuntu1.22.04.2 [33.5 kB]                  
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libxml2 amd64 2.9.13+dfsg-1ubuntu0.6 [762 kB]                      
+Get:4 http://archive.ubuntu.com/ubuntu jammy/main amd64 liblmdb0 amd64 0.9.24-1build2 [47.6 kB]                                    
+Get:5 http://archive.ubuntu.com/ubuntu jammy/main amd64 libmaxminddb0 amd64 1.5.2-1build2 [24.7 kB]                                
+Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libnghttp2-14 amd64 1.43.0-1ubuntu0.2 [76.9 kB]                    
+Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libuv1 amd64 1.43.0-1ubuntu0.1 [92.7 kB]                           
+Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 bind9-libs amd64 1:9.18.30-0ubuntu0.22.04.2 [1259 kB]              
+Get:9 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 bind9-host amd64 1:9.18.30-0ubuntu0.22.04.2 [52.6 kB]              
+Get:10 http://archive.ubuntu.com/ubuntu jammy/main amd64 libedit2 amd64 3.1-20210910-1build1 [96.8 kB]                             
+Get:11 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 bind9-dnsutils amd64 1:9.18.30-0ubuntu0.22.04.2 [158 kB]          
+Get:12 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 dnsutils all 1:9.18.30-0ubuntu0.22.04.2 [3924 B]              
+Fetched 13.2 MB in 8s (1596 kB/s)                                                                                                  
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package libicu70:amd64.
+(Reading database ... 4647 files and directories currently installed.)
+Preparing to unpack .../00-libicu70_70.1-2_amd64.deb ...
+Unpacking libicu70:amd64 (70.1-2) ...
+Selecting previously unselected package libjson-c5:amd64.
+Preparing to unpack .../01-libjson-c5_0.15-3~ubuntu1.22.04.2_amd64.deb ...
+Unpacking libjson-c5:amd64 (0.15-3~ubuntu1.22.04.2) ...
+Selecting previously unselected package libxml2:amd64.
+Preparing to unpack .../02-libxml2_2.9.13+dfsg-1ubuntu0.6_amd64.deb ...
+Unpacking libxml2:amd64 (2.9.13+dfsg-1ubuntu0.6) ...
+Selecting previously unselected package liblmdb0:amd64.
+Preparing to unpack .../03-liblmdb0_0.9.24-1build2_amd64.deb ...
+Unpacking liblmdb0:amd64 (0.9.24-1build2) ...
+Selecting previously unselected package libmaxminddb0:amd64.
+Preparing to unpack .../04-libmaxminddb0_1.5.2-1build2_amd64.deb ...
+Unpacking libmaxminddb0:amd64 (1.5.2-1build2) ...
+Selecting previously unselected package libnghttp2-14:amd64.
+Preparing to unpack .../05-libnghttp2-14_1.43.0-1ubuntu0.2_amd64.deb ...
+Unpacking libnghttp2-14:amd64 (1.43.0-1ubuntu0.2) ...
+Selecting previously unselected package libuv1:amd64.
+Preparing to unpack .../06-libuv1_1.43.0-1ubuntu0.1_amd64.deb ...
+Unpacking libuv1:amd64 (1.43.0-1ubuntu0.1) ...
+Selecting previously unselected package bind9-libs:amd64.
+Preparing to unpack .../07-bind9-libs_1%3a9.18.30-0ubuntu0.22.04.2_amd64.deb ...
+Unpacking bind9-libs:amd64 (1:9.18.30-0ubuntu0.22.04.2) ...
+Selecting previously unselected package bind9-host.
+Preparing to unpack .../08-bind9-host_1%3a9.18.30-0ubuntu0.22.04.2_amd64.deb ...
+Unpacking bind9-host (1:9.18.30-0ubuntu0.22.04.2) ...
+Selecting previously unselected package libedit2:amd64.
+Preparing to unpack .../09-libedit2_3.1-20210910-1build1_amd64.deb ...
+Unpacking libedit2:amd64 (3.1-20210910-1build1) ...
+Selecting previously unselected package bind9-dnsutils.
+Preparing to unpack .../10-bind9-dnsutils_1%3a9.18.30-0ubuntu0.22.04.2_amd64.deb ...
+Unpacking bind9-dnsutils (1:9.18.30-0ubuntu0.22.04.2) ...
+Selecting previously unselected package dnsutils.
+Preparing to unpack .../11-dnsutils_1%3a9.18.30-0ubuntu0.22.04.2_all.deb ...
+Unpacking dnsutils (1:9.18.30-0ubuntu0.22.04.2) ...
+Setting up liblmdb0:amd64 (0.9.24-1build2) ...
+Setting up libmaxminddb0:amd64 (1.5.2-1build2) ...
+Setting up libedit2:amd64 (3.1-20210910-1build1) ...
+Setting up libnghttp2-14:amd64 (1.43.0-1ubuntu0.2) ...
+Setting up libuv1:amd64 (1.43.0-1ubuntu0.1) ...
+Setting up libjson-c5:amd64 (0.15-3~ubuntu1.22.04.2) ...
+Setting up libicu70:amd64 (70.1-2) ...
+Setting up libxml2:amd64 (2.9.13+dfsg-1ubuntu0.6) ...
+Setting up bind9-libs:amd64 (1:9.18.30-0ubuntu0.22.04.2) ...
+Setting up bind9-host (1:9.18.30-0ubuntu0.22.04.2) ...
+Setting up bind9-dnsutils (1:9.18.30-0ubuntu0.22.04.2) ...
+Setting up dnsutils (1:9.18.30-0ubuntu0.22.04.2) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.9) ...
+root@651d0bdc1031:/# exit
+exit
+----------------------------------------------------------------------2
+u26@u26-VirtualBox:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED             STATUS             PORTS                 NAMES
+cd629dacc0fb   mysql     "docker-entrypoint.s…"   About an hour ago   Up About an hour   3306/tcp, 33060/tcp   eloquent_faraday
+u26@u26-VirtualBox:~$ docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS                 NAMES
+651d0bdc1031   a24be041d957   "/bin/bash"              21 minutes ago   Exited (0) 10 minutes ago                         funny_yalow
+cd629dacc0fb   mysql          "docker-entrypoint.s…"   2 hours ago      Up 2 hours                  3306/tcp, 33060/tcp   eloquent_faraday
+dff0df4a699f   fa262c3a6564   "docker-entrypoint.s…"   2 hours ago      Exited (1) 2 hours ago                            charming_pare
+847515ef7785   a24be041d957   "/bin/bash"              24 hours ago     Exited (0) 24 hours ago                           priceless_chandrasekhar
+619d4fbec6aa   fa262c3a6564   "docker-entrypoint.s…"   24 hours ago     Exited (1) 24 hours ago                           quizzical_mestorf
+9d0baa2beca3   fa262c3a6564   "docker-entrypoint.s…"   24 hours ago     Exited (1) 24 hours ago                           nifty_wiles
+e691696b5c31   mysql          "docker-entrypoint.s…"   25 hours ago     Exited (255) 2 hours ago    3306/tcp, 33060/tcp   xenodochial_poitras
+b5898c831395   mysql          "docker-entrypoint.s…"   25 hours ago     Exited (1) 25 hours ago                           beautiful_dirac
+065c39f8ab92   a24be041d957   "/bin/bash"              25 hours ago     Exited (0) 25 hours ago                           beautiful_shockley
+f4628b5d4ef1   a24be041d957   "/bin/bash"              25 hours ago     Exited (0) 25 hours ago                           gifted_burnell
+4d3a11ed2a0a   a24be041d957   "/bin/bash"              25 hours ago     Exited (0) 25 hours ago                           vibrant_borg
+u26@u26-VirtualBox:~$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+koriks       0.1       eaf8224d94e7   24 hours ago   186MB
+joomla       latest    29595f1bada0   6 days ago     760MB
+adminer      latest    d1ce2535a665   10 days ago    121MB
+php          latest    cd0e124311ea   2 weeks ago    547MB
+tomcat       latest    88b0f1cee84c   3 weeks ago    519MB
+postgres     latest    76e3e031d245   4 weeks ago    438MB
+mariadb      latest    a914eff5d2eb   6 weeks ago    336MB
+alpine       latest    aded1e1a5b37   6 weeks ago    7.83MB
+wordpress    latest    52bb3e73152a   6 weeks ago    701MB
+python       latest    e6c8fe2e1108   7 weeks ago    1.02GB
+ubuntu       24.04     a04dc4851cbc   2 months ago   78.1MB
+ubuntu       22.04     a24be041d957   2 months ago   77.9MB
+phpmyadmin   latest    052506f2de4d   2 months ago   570MB
+httpd        latest    83d938198316   2 months ago   148MB
+mysql        latest    fa262c3a6564   2 months ago   797MB
+redis        latest    ad4b31aa2de6   2 months ago   117MB
+openjdk      latest    71260f256d19   2 years ago    470MB
+
+u26@u26-VirtualBox:~$ docker commit -m"добавили iproute2, ip-putils, dnsutils" -a "koriks" 065c39f8ab92 ubuntu:22.04
+sha256:2d3b43f0af45e591abe6544cd8b74de5712c6bb6a2cca0beb2600795640efda4
+
+u26@u26-VirtualBox:~$ docker inages
+docker: unknown command: docker inages
+
+Run 'docker --help' for more information
+u26@u26-VirtualBox:~$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+ubuntu       22.04     2d3b43f0af45   40 seconds ago   746MB
+koriks       0.1       eaf8224d94e7   24 hours ago     186MB
+joomla       latest    29595f1bada0   6 days ago       760MB
+adminer      latest    d1ce2535a665   10 days ago      121MB
+php          latest    cd0e124311ea   2 weeks ago      547MB
+tomcat       latest    88b0f1cee84c   3 weeks ago      519MB
+postgres     latest    76e3e031d245   4 weeks ago      438MB
+mariadb      latest    a914eff5d2eb   6 weeks ago      336MB
+alpine       latest    aded1e1a5b37   6 weeks ago      7.83MB
+wordpress    latest    52bb3e73152a   6 weeks ago      701MB
+python       latest    e6c8fe2e1108   7 weeks ago      1.02GB
+ubuntu       24.04     a04dc4851cbc   2 months ago     78.1MB
+ubuntu       <none>    a24be041d957   2 months ago     77.9MB
+phpmyadmin   latest    052506f2de4d   2 months ago     570MB
+httpd        latest    83d938198316   2 months ago     148MB
+mysql        latest    fa262c3a6564   2 months ago     797MB
+redis        latest    ad4b31aa2de6   2 months ago     117MB
+openjdk      latest    71260f256d19   2 years ago      470MB
+
+u26@u26-VirtualBox:~$ docker history 2d3b43f0af45
+IMAGE          CREATED              CREATED BY                                      SIZE      COMMENT
+2d3b43f0af45   About a minute ago   /bin/bash                                       668MB     добавили iproute2, ip-putils, dnsutils
+a24be041d957   2 months ago         /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B        
+<missing>      2 months ago         /bin/sh -c #(nop) ADD file:1b6c8c9518be42fa2…   77.9MB    
+<missing>      2 months ago         /bin/sh -c #(nop)  LABEL org.opencontainers.…   0B        
+<missing>      2 months ago         /bin/sh -c #(nop)  LABEL org.opencontainers.…   0B        
+<missing>      2 months ago         /bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH     0B        
+<missing>      2 months ago         /bin/sh -c #(nop)  ARG RELEASE                  0B        
+
+u26@u26-VirtualBox:~$ docker inspect 2d3b43f0af45
+[
+    {
+        "Id": "sha256:2d3b43f0af45e591abe6544cd8b74de5712c6bb6a2cca0beb2600795640efda4",
+        "RepoTags": [
+            "ubuntu:22.04"
+        ],
+        "RepoDigests": [],
+        "Parent": "sha256:a24be041d9576937f62435f8564c2ca6e429d2760537b04c50ca50adb0c6d212",
+        "Comment": "добавили iproute2, ip-putils, dnsutils",
+        "Created": "2025-03-28T07:17:55.543581763Z",
+        "DockerVersion": "28.0.2",
+        "Author": "koriks",
+        "Config": {
+            "Hostname": "065c39f8ab92",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": true,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": true,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Image": "a24be041d957",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.version": "22.04"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 745601489,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/d989e819149deaa4710183daffeee7bd2671df59f0b29c324b8296f0153e406e/diff",
+                "MergedDir": "/var/lib/docker/overlay2/679e55bb1388ec633bf93fe9a173f5098251ab02c48d1c43533cb930c10ea93d/merged",
+                "UpperDir": "/var/lib/docker/overlay2/679e55bb1388ec633bf93fe9a173f5098251ab02c48d1c43533cb930c10ea93d/diff",
+                "WorkDir": "/var/lib/docker/overlay2/679e55bb1388ec633bf93fe9a173f5098251ab02c48d1c43533cb930c10ea93d/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:270a1170e7e398434ff1b31e17e233f7d7b71aa99a40473615860068e86720af",
+                "sha256:b6f7b193d8a2d84c2f7db228831e3da37b127089fb5c7bf080c347b4e5c4e546"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2025-03-28T12:17:57.327101665+05:00"
+        }
+    }
+]
+u26@u26-VirtualBox:~$ 
+
+u26@u26-VirtualBox:~$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+ubuntu       22.04     2d3b43f0af45   22 minutes ago   746MB
+koriks       0.1       eaf8224d94e7   24 hours ago     186MB
+joomla       latest    29595f1bada0   6 days ago       760MB
+adminer      latest    d1ce2535a665   10 days ago      121MB
+php          latest    cd0e124311ea   2 weeks ago      547MB
+tomcat       latest    88b0f1cee84c   3 weeks ago      519MB
+postgres     latest    76e3e031d245   4 weeks ago      438MB
+mariadb      latest    a914eff5d2eb   6 weeks ago      336MB
+alpine       latest    aded1e1a5b37   6 weeks ago      7.83MB
+wordpress    latest    52bb3e73152a   6 weeks ago      701MB
+python       latest    e6c8fe2e1108   7 weeks ago      1.02GB
+ubuntu       24.04     a04dc4851cbc   2 months ago     78.1MB
+ubuntu       <none>    a24be041d957   2 months ago     77.9MB
+phpmyadmin   latest    052506f2de4d   2 months ago     570MB
+httpd        latest    83d938198316   2 months ago     148MB
+mysql        latest    fa262c3a6564   2 months ago     797MB
+redis        latest    ad4b31aa2de6   2 months ago     117MB
+openjdk      latest    71260f256d19   2 years ago      470MB
+u26@u26-VirtualBox:~$ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS       PORTS                 NAMES
+cd629dacc0fb   mysql     "docker-entrypoint.s…"   2 hours ago   Up 2 hours   3306/tcp, 33060/tcp   eloquent_faraday
+u26@u26-VirtualBox:~$ docker run -it ubuntu:22.04
+root@fe30e112b61d:/# apt install mysql-client
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+  mysql-client
+0 upgraded, 1 newly installed, 0 to remove and 11 not upgraded.
+Need to get 9352 B of archives.
+After this operation, 35.8 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 mysql-client all 8.0.41-0ubuntu0.22.04.1 [9352 B]
+Fetched 9352 B in 1s (14.8 kB/s)       
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package mysql-client.
+(Reading database ... 7098 files and directories currently installed.)
+Preparing to unpack .../mysql-client_8.0.41-0ubuntu0.22.04.1_all.deb ...
+Unpacking mysql-client (8.0.41-0ubuntu0.22.04.1) ...
+Setting up mysql-client (8.0.41-0ubuntu0.22.04.1) ...
+root@fe30e112b61d:/# apt install postgreql-client -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package postgreql-client
+root@fe30e112b61d:/# apt install postgresql-client -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libldap-2.5-0 libldap-common libpq5 libreadline8 libsasl2-2 libsasl2-modules libsasl2-modules-db postgresql-client-14
+  postgresql-client-common readline-common
+Suggested packages:
+  libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+  postgresql-14 postgresql-doc-14 readline-doc
+The following NEW packages will be installed:
+  libldap-2.5-0 libldap-common libpq5 libreadline8 libsasl2-2 libsasl2-modules libsasl2-modules-db postgresql-client
+  postgresql-client-14 postgresql-client-common readline-common
+0 upgraded, 11 newly installed, 0 to remove and 11 not upgraded.
+Need to get 1979 kB of archives.
+After this operation, 6688 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 readline-common all 8.1.2-1 [53.5 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 libreadline8 amd64 8.1.2-1 [153 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsasl2-modules-db amd64 2.1.27+dfsg2-3ubuntu1.2 [20.5 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsasl2-2 amd64 2.1.27+dfsg2-3ubuntu1.2 [53.8 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libldap-2.5-0 amd64 2.5.18+dfsg-0ubuntu0.22.04.3 [183 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libldap-common all 2.5.18+dfsg-0ubuntu0.22.04.3 [15.8 kB]
+Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpq5 amd64 14.17-0ubuntu0.22.04.1 [152 kB]
+Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsasl2-modules amd64 2.1.27+dfsg2-3ubuntu1.2 [68.8 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy/main amd64 postgresql-client-common all 238 [29.6 kB]
+Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 postgresql-client-14 amd64 14.17-0ubuntu0.22.04.1 [1246 kB]
+Get:11 http://archive.ubuntu.com/ubuntu jammy/main amd64 postgresql-client all 14+238 [3292 B]
+Fetched 1979 kB in 1s (1794 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package readline-common.
+(Reading database ... 7100 files and directories currently installed.)
+Preparing to unpack .../00-readline-common_8.1.2-1_all.deb ...
+Unpacking readline-common (8.1.2-1) ...
+Selecting previously unselected package libreadline8:amd64.
+Preparing to unpack .../01-libreadline8_8.1.2-1_amd64.deb ...
+Unpacking libreadline8:amd64 (8.1.2-1) ...
+Selecting previously unselected package libsasl2-modules-db:amd64.
+Preparing to unpack .../02-libsasl2-modules-db_2.1.27+dfsg2-3ubuntu1.2_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../03-libsasl2-2_2.1.27+dfsg2-3ubuntu1.2_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Selecting previously unselected package libldap-2.5-0:amd64.
+Preparing to unpack .../04-libldap-2.5-0_2.5.18+dfsg-0ubuntu0.22.04.3_amd64.deb ...
+Unpacking libldap-2.5-0:amd64 (2.5.18+dfsg-0ubuntu0.22.04.3) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../05-libldap-common_2.5.18+dfsg-0ubuntu0.22.04.3_all.deb ...
+Unpacking libldap-common (2.5.18+dfsg-0ubuntu0.22.04.3) ...
+Selecting previously unselected package libpq5:amd64.
+Preparing to unpack .../06-libpq5_14.17-0ubuntu0.22.04.1_amd64.deb ...
+Unpacking libpq5:amd64 (14.17-0ubuntu0.22.04.1) ...
+Selecting previously unselected package libsasl2-modules:amd64.
+Preparing to unpack .../07-libsasl2-modules_2.1.27+dfsg2-3ubuntu1.2_amd64.deb ...
+Unpacking libsasl2-modules:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Selecting previously unselected package postgresql-client-common.
+Preparing to unpack .../08-postgresql-client-common_238_all.deb ...
+Unpacking postgresql-client-common (238) ...
+Selecting previously unselected package postgresql-client-14.
+Preparing to unpack .../09-postgresql-client-14_14.17-0ubuntu0.22.04.1_amd64.deb ...
+Unpacking postgresql-client-14 (14.17-0ubuntu0.22.04.1) ...
+Selecting previously unselected package postgresql-client.
+Preparing to unpack .../10-postgresql-client_14+238_all.deb ...
+Unpacking postgresql-client (14+238) ...
+Setting up postgresql-client-common (238) ...
+Setting up libsasl2-modules:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Setting up libldap-common (2.5.18+dfsg-0ubuntu0.22.04.3) ...
+Setting up libsasl2-modules-db:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Setting up libsasl2-2:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Setting up readline-common (8.1.2-1) ...
+Setting up libreadline8:amd64 (8.1.2-1) ...
+Setting up libldap-2.5-0:amd64 (2.5.18+dfsg-0ubuntu0.22.04.3) ...
+Setting up libpq5:amd64 (14.17-0ubuntu0.22.04.1) ...
+Setting up postgresql-client-14 (14.17-0ubuntu0.22.04.1) ...
+update-alternatives: using /usr/share/postgresql/14/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto 
+mode
+Setting up postgresql-client (14+238) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+root@fe30e112b61d:/# 
+
+u26@u26-VirtualBox:~$ docker run -it ubuntu:22.04
+root@7989b2eefc7f:/# mysql -h 172.17.0.2 -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 9.2.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> exit
+Bye
+root@7989b2eefc7f:/# psql -h 172.17.0.3 -U postgres
+bash: psql: command not found
+root@7989b2eefc7f:/# psql -h 172.17.0.3 -u postgres
+bash: psql: command not found
+root@7989b2eefc7f:/# apt install postgres-client   
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package postgres-client
+root@7989b2eefc7f:/# apt install postgres       
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+E: Unable to locate package postgres
+root@7989b2eefc7f:/# apt install postgresql-client
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following additional packages will be installed:
+  libldap-2.5-0 libldap-common libpq5 libreadline8 libsasl2-2 libsasl2-modules libsasl2-modules-db postgresql-client-14
+  postgresql-client-common readline-common
+Suggested packages:
+  libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap libsasl2-modules-otp libsasl2-modules-sql
+  postgresql-14 postgresql-doc-14 readline-doc
+The following NEW packages will be installed:
+  libldap-2.5-0 libldap-common libpq5 libreadline8 libsasl2-2 libsasl2-modules libsasl2-modules-db postgresql-client
+  postgresql-client-14 postgresql-client-common readline-common
+0 upgraded, 11 newly installed, 0 to remove and 11 not upgraded.
+Need to get 1979 kB of archives.
+After this operation, 6688 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu jammy/main amd64 readline-common all 8.1.2-1 [53.5 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 libreadline8 amd64 8.1.2-1 [153 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsasl2-modules-db amd64 2.1.27+dfsg2-3ubuntu1.2 [20.5 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsasl2-2 amd64 2.1.27+dfsg2-3ubuntu1.2 [53.8 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libldap-2.5-0 amd64 2.5.18+dfsg-0ubuntu0.22.04.3 [183 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libldap-common all 2.5.18+dfsg-0ubuntu0.22.04.3 [15.8 kB]
+Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpq5 amd64 14.17-0ubuntu0.22.04.1 [152 kB]
+Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libsasl2-modules amd64 2.1.27+dfsg2-3ubuntu1.2 [68.8 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy/main amd64 postgresql-client-common all 238 [29.6 kB]
+Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 postgresql-client-14 amd64 14.17-0ubuntu0.22.04.1 [1246 kB]
+Get:11 http://archive.ubuntu.com/ubuntu jammy/main amd64 postgresql-client all 14+238 [3292 B]
+Fetched 1979 kB in 1s (1697 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package readline-common.
+(Reading database ... 7098 files and directories currently installed.)
+Preparing to unpack .../00-readline-common_8.1.2-1_all.deb ...
+Unpacking readline-common (8.1.2-1) ...
+Selecting previously unselected package libreadline8:amd64.
+Preparing to unpack .../01-libreadline8_8.1.2-1_amd64.deb ...
+Unpacking libreadline8:amd64 (8.1.2-1) ...
+Selecting previously unselected package libsasl2-modules-db:amd64.
+Preparing to unpack .../02-libsasl2-modules-db_2.1.27+dfsg2-3ubuntu1.2_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../03-libsasl2-2_2.1.27+dfsg2-3ubuntu1.2_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Selecting previously unselected package libldap-2.5-0:amd64.
+Preparing to unpack .../04-libldap-2.5-0_2.5.18+dfsg-0ubuntu0.22.04.3_amd64.deb ...
+Unpacking libldap-2.5-0:amd64 (2.5.18+dfsg-0ubuntu0.22.04.3) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../05-libldap-common_2.5.18+dfsg-0ubuntu0.22.04.3_all.deb ...
+Unpacking libldap-common (2.5.18+dfsg-0ubuntu0.22.04.3) ...
+Selecting previously unselected package libpq5:amd64.
+Preparing to unpack .../06-libpq5_14.17-0ubuntu0.22.04.1_amd64.deb ...
+Unpacking libpq5:amd64 (14.17-0ubuntu0.22.04.1) ...
+Selecting previously unselected package libsasl2-modules:amd64.
+Preparing to unpack .../07-libsasl2-modules_2.1.27+dfsg2-3ubuntu1.2_amd64.deb ...
+Unpacking libsasl2-modules:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Selecting previously unselected package postgresql-client-common.
+Preparing to unpack .../08-postgresql-client-common_238_all.deb ...
+Unpacking postgresql-client-common (238) ...
+Selecting previously unselected package postgresql-client-14.
+Preparing to unpack .../09-postgresql-client-14_14.17-0ubuntu0.22.04.1_amd64.deb ...
+Unpacking postgresql-client-14 (14.17-0ubuntu0.22.04.1) ...
+Selecting previously unselected package postgresql-client.
+Preparing to unpack .../10-postgresql-client_14+238_all.deb ...
+Unpacking postgresql-client (14+238) ...
+Setting up postgresql-client-common (238) ...
+Setting up libsasl2-modules:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Setting up libldap-common (2.5.18+dfsg-0ubuntu0.22.04.3) ...
+Setting up libsasl2-modules-db:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Setting up libsasl2-2:amd64 (2.1.27+dfsg2-3ubuntu1.2) ...
+Setting up readline-common (8.1.2-1) ...
+Setting up libreadline8:amd64 (8.1.2-1) ...
+Setting up libldap-2.5-0:amd64 (2.5.18+dfsg-0ubuntu0.22.04.3) ...
+Setting up libpq5:amd64 (14.17-0ubuntu0.22.04.1) ...
+Setting up postgresql-client-14 (14.17-0ubuntu0.22.04.1) ...
+update-alternatives: using /usr/share/postgresql/14/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto 
+mode
+Setting up postgresql-client (14+238) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+root@7989b2eefc7f:/# psql -h 172.17.0.3 -U postgres
+psql: error: connection to server at "172.17.0.3", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+root@7989b2eefc7f:/# psql -h 172.17.0.3 -U postgres
+psql: error: connection to server at "172.17.0.3", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+root@7989b2eefc7f:/# psql -h 172.17.0.4 -U postgres
+Password for user postgres: 
+psql (14.17 (Ubuntu 14.17-0ubuntu0.22.04.1), server 17.4 (Debian 17.4-1.pgdg120+2))
+WARNING: psql major version 14, server major version 17.
+         Some psql features might not work.
+Type "help" for help.
+
+postgres=# help
+You are using psql, the command-line interface to PostgreSQL.
+Type:  \copyright for distribution terms
+       \h for help with SQL commands
+       \? for help with psql commands
+       \g or terminate with semicolon to execute query
+       \q to quit
+postgres=# \l
+                                 List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+(3 rows)
+
+postgres=# create user koriks with password '112020' superuser;
+CREATE ROLE
+postgres=# create database koriks owner korik;
+ERROR:  role "korik" does not exist
+postgres=# create database koriks owner koriks;
+CREATE DATABASE
+postgres=# \l
+                                 List of databases
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
+-----------+----------+----------+------------+------------+-----------------------
+ koriks    | koriks   | UTF8     | en_US.utf8 | en_US.utf8 | 
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+           |          |          |            |            | postgres=CTc/postgres
+(4 rows)
+
+u26@u26-VirtualBox:~$ docker pull phpmyadmin
+Using default tag: latest
+latest: Pulling from library/phpmyadmin
+Digest: sha256:6cb0a7146734b59c8ca4f450ce7bde9f518e36b10558af75fc36591cbea1d5cc
+Status: Image is up to date for phpmyadmin:latest
+docker.io/library/phpmyadmin:latest
+u26@u26-VirtualBox:~$ docker pull dockage/phppgadmin
+Using default tag: latest
+latest: Pulling from dockage/phppgadmin
+1160f4abea84: Pull complete 
+320639358968: Pull complete 
+ccac454a1641: Pull complete 
+655f2626baaf: Pull complete 
+b48b9f30019b: Pull complete 
+e45df9444290: Pull complete 
+1014ff3641fa: Pull complete 
+6a6b76436159: Pull complete 
+Digest: sha256:520caedce16c9707a67bf2c1de730e1234539250f36bb052b06bd7b05269905b
+Status: Downloaded newer image for dockage/phppgadmin:latest
+docker.io/dockage/phppgadmin:latest
+u26@u26-VirtualBox:~$ docker images
+REPOSITORY           TAG       IMAGE ID       CREATED        SIZE
+ubuntu               22.04     2d3b43f0af45   2 hours ago    746MB
+koriks               0.1       eaf8224d94e7   26 hours ago   186MB
+joomla               latest    29595f1bada0   6 days ago     760MB
+adminer              latest    d1ce2535a665   10 days ago    121MB
+php                  latest    cd0e124311ea   2 weeks ago    547MB
+tomcat               latest    88b0f1cee84c   3 weeks ago    519MB
+postgres             latest    76e3e031d245   4 weeks ago    438MB
+mariadb              latest    a914eff5d2eb   6 weeks ago    336MB
+alpine               latest    aded1e1a5b37   6 weeks ago    7.83MB
+wordpress            latest    52bb3e73152a   6 weeks ago    701MB
+python               latest    e6c8fe2e1108   7 weeks ago    1.02GB
+ubuntu               24.04     a04dc4851cbc   2 months ago   78.1MB
+ubuntu               <none>    a24be041d957   2 months ago   77.9MB
+phpmyadmin           latest    052506f2de4d   2 months ago   570MB
+httpd                latest    83d938198316   2 months ago   148MB
+mysql                latest    fa262c3a6564   2 months ago   797MB
+redis                latest    ad4b31aa2de6   2 months ago   117MB
+openjdk              latest    71260f256d19   2 years ago    470MB
+dockage/phppgadmin   latest    10873793df57   5 years ago    71.3MB
+
