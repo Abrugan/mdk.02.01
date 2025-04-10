@@ -1,0 +1,166 @@
+u26@u26-VirtualBox:~$ docker network create -d bridge --subnet 192.168.120.0/26 --gateway 192.168.120.1 most1
+ce00c7c114640ef0495c6f8cc59f5d0847d77f582cc66f55f68849b4ef0199cc
+
+u26@u26-VirtualBox:~$ docker network create -d bridge --subnet 192.168.120.64/26 --gateway 192.168.120.65 most2
+bc7d133e127b65012f7b4ca01654d261af4f63ed2bd84dc6e836d380ac3ce7d1
+
+u26@u26-VirtualBox:~$ docker network create -d bridge --subnet 192.168.120.128/27 --gateway 192.168.120.129 most3
+1568988a0373837baeec595484b035517bcb9f25b8934e3eabea6783a9f3c688
+
+u26@u26-VirtualBox:~$ docker network create -d bridge --subnet 192.168.120.160/29 --gateway 192.168.120.161 most4
+05ab254cad96007ad2f6eced528263db455d3cf7d696b34a7fd0f5744fafefe4
+
+
+u26@u26-VirtualBox:~$ docker network inspect most1
+[
+    {
+        "Name": "most1",
+        "Id": "ce00c7c114640ef0495c6f8cc59f5d0847d77f582cc66f55f68849b4ef0199cc",
+        "Created": "2025-04-10T12:06:59.766986558+05:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "192.168.120.0/26",
+                    "Gateway": "192.168.120.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+u26@u26-VirtualBox:~$ docker network inspect most2
+[
+    {
+        "Name": "most2",
+        "Id": "bc7d133e127b65012f7b4ca01654d261af4f63ed2bd84dc6e836d380ac3ce7d1",
+        "Created": "2025-04-10T12:09:43.190549546+05:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "192.168.120.64/26",
+                    "Gateway": "192.168.120.65"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+u26@u26-VirtualBox:~$ docker network inspect most3
+[
+    {
+        "Name": "most3",
+        "Id": "1568988a0373837baeec595484b035517bcb9f25b8934e3eabea6783a9f3c688",
+        "Created": "2025-04-10T12:10:25.189200118+05:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "192.168.120.128/27",
+                    "Gateway": "192.168.120.129"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+u26@u26-VirtualBox:~$ docker network inspect most4
+[
+    {
+        "Name": "most4",
+        "Id": "05ab254cad96007ad2f6eced528263db455d3cf7d696b34a7fd0f5744fafefe4",
+        "Created": "2025-04-10T12:10:58.302702271+05:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "192.168.120.160/29",
+                    "Gateway": "192.168.120.161"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+u26@u26-VirtualBox:~$ 
+
+u26@u26-VirtualBox:~$ docker network create -d bridge most5
+c2f30eab44775df7255c219edbf63c236b57ad707ba4e075751a7a52088278e8
+
+u26@u26-VirtualBox:~$ docker network create -d bridge most6
+d988e3d9ab96e1a0a7e02b26d568b3b4481ceef440b3a1ee51f1660dae472804
+
+u26@u26-VirtualBox:~$ docker network create -d bridge most7
+15b0547f143c1d3b47cf82943bb260f719a0506faa165579fe070e201045e8a2
+
+u26@u26-VirtualBox:~$ docker network create -d bridge most8
+68214de10759977655fddd86ff988b412bbd6a8551797908ffcd8748f464e74f
+
+u26@u26-VirtualBox:~$ docker run -itd --net most5 --name cont5 --rm alpine
+e68b8d3c07408aef231fb9e0ed4e906933cc5743a945676f3e56090aa18a8212
+
+u26@u26-VirtualBox:~$ docker run -itd --net most6 --name cont6 --rm alpine
+d7fee49f206f496b37942975624253d393274d858b5372c49b024d0fb89a356b
+
+u26@u26-VirtualBox:~$ docker run -itd --net most7 --name cont7 --rm alpine
+d2b1c0640c154a67a8dd001eed21e388b5e200d76d07f89b773ccd77b009a2db
+
+u26@u26-VirtualBox:~$ docker run -itd --net most8 --name cont8 --rm alpine
+2ac42ecf7417b3896a7373aafc3d1d3b83e2b97d25554494334033e023a526ec
