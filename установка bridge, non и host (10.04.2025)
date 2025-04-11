@@ -164,3 +164,97 @@ d2b1c0640c154a67a8dd001eed21e388b5e200d76d07f89b773ccd77b009a2db
 
 u26@u26-VirtualBox:~$ docker run -itd --net most8 --name cont8 --rm alpine
 2ac42ecf7417b3896a7373aafc3d1d3b83e2b97d25554494334033e023a526ec
+
+u26@u26-VirtualBox:~$ docker run -itd --name cont1 --net most1 --rm alpine 
+61cbd9ce77720b05fc34ea3f63c354dabd02ad5cb856afbcd172eede97a12b41
+
+u26@u26-VirtualBox:~$ docker run -itd --name cont2 --net most2 --rm alpine 
+5daa813c65aa4c7b303615d9445064b763e94c3a40f9612f579859808da69fb4
+
+u26@u26-VirtualBox:~$ docker run -itd --name cont3 --net most3 --rm alpine 
+38b92b41a961d1d3ba3e3d62d2c59272bdfc2b212f67f92c03e23d214b1e831c
+
+u26@u26-VirtualBox:~$ docker run -itd --name cont4 --net most4 --rm alpine 
+2e7c612ba41825f35a141e6aabc8cb82ebf4529768fadd4648f92153b31364a4
+
+////контейнеры из разных сетй другдруга не видят, а из одной сети друг друга видят
+
+СОЗДАНИЕ+ВИДЯТ 
+
+u26@u26-VirtualBox:~$ docker run -itd --name cont5 --net most1 --rm alpine 
+bd69a11c6c609ea52d17deeffb23a8b187978843480314aba1a3a51f61885b6e
+
+u26@u26-VirtualBox:~$ docker exec cont1 ping -c 4 cont5
+PING cont5 (192.168.120.3): 56 data bytes
+64 bytes from 192.168.120.3: seq=0 ttl=64 time=0.069 ms
+64 bytes from 192.168.120.3: seq=1 ttl=64 time=0.130 ms
+64 bytes from 192.168.120.3: seq=2 ttl=64 time=0.133 ms
+64 bytes from 192.168.120.3: seq=3 ttl=64 time=0.143 ms
+
+--- cont5 ping statistics ---
+4 packets transmitted, 4 packets received, 0% packet loss
+round-trip min/avg/max = 0.069/0.118/0.143 ms
+
+u26@u26-VirtualBox:~$ docker run -itd --name cont6 --net most2 --rm alpine 
+6e39976cf239bea4d779f85e9646fcc8218632767e48b31f89d4a0b4ee333226
+
+u26@u26-VirtualBox:~$ docker exec cont2 ping -c 4 cont6
+PING cont6 (192.168.120.67): 56 data bytes
+64 bytes from 192.168.120.67: seq=0 ttl=64 time=0.074 ms
+64 bytes from 192.168.120.67: seq=1 ttl=64 time=0.129 ms
+64 bytes from 192.168.120.67: seq=2 ttl=64 time=0.129 ms
+64 bytes from 192.168.120.67: seq=3 ttl=64 time=0.142 ms
+
+--- cont6 ping statistics ---
+4 packets transmitted, 4 packets received, 0% packet loss
+round-trip min/avg/max = 0.074/0.118/0.142 ms
+
+u26@u26-VirtualBox:~$ docker run -itd --name cont7 --net most3 --rm alpine 
+c1f90f598dcf87c9153c7612cbab5b2ff47df6568925c3891053aff49bf89615
+
+u26@u26-VirtualBox:~$ docker exec cont3 ping -c 4 cont7
+PING cont7 (192.168.120.131): 56 data bytes
+64 bytes from 192.168.120.131: seq=0 ttl=64 time=0.443 ms
+64 bytes from 192.168.120.131: seq=1 ttl=64 time=0.149 ms
+64 bytes from 192.168.120.131: seq=2 ttl=64 time=0.130 ms
+64 bytes from 192.168.120.131: seq=3 ttl=64 time=0.139 ms
+
+--- cont7 ping statistics ---
+4 packets transmitted, 4 packets received, 0% packet loss
+round-trip min/avg/max = 0.130/0.215/0.443 ms
+
+u26@u26-VirtualBox:~$ docker run -itd --name cont8 --net most4 --rm alpine 
+9520b4ae4285ab693d22ae8891b002af264e7a3ae73d271c17b6ee90dff05fa0
+u26@u26-VirtualBox:~$ docker exec cont4 ping -c 4 cont8
+PING cont8 (192.168.120.163): 56 data bytes
+64 bytes from 192.168.120.163: seq=0 ttl=64 time=0.251 ms
+64 bytes from 192.168.120.163: seq=1 ttl=64 time=0.128 ms
+64 bytes from 192.168.120.163: seq=2 ttl=64 time=0.152 ms
+64 bytes from 192.168.120.163: seq=3 ttl=64 time=0.126 ms
+
+--- cont8 ping statistics ---
+4 packets transmitted, 4 packets received, 0% packet loss
+round-trip min/avg/max = 0.126/0.164/0.251 ms
+
+НЕ ВИДЯТ 
+
+u26@u26-VirtualBox:~$ docker exec cont1 ping -c 4 cont2
+ping: bad address 'cont2'
+
+u26@u26-VirtualBox:~$ docker exec cont2 ping -c 4 cont3
+ping: bad address 'cont3'
+
+u26@u26-VirtualBox:~$ docker exec cont3 ping -c 4 cont4
+ping: bad address 'cont4'
+
+u26@u26-VirtualBox:~$ docker exec cont4 ping -c 4 cont5
+ping: bad address 'cont5'
+
+u26@u26-VirtualBox:~$ docker exec cont5 ping -c 4 cont6
+ping: bad address 'cont6'
+
+u26@u26-VirtualBox:~$ docker exec cont6 ping -c 4 cont7
+ping: bad address 'cont7'
+
+u26@u26-VirtualBox:~$ docker exec cont7 ping -c 4 cont8
+ping: bad address 'cont8'
