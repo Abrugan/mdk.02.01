@@ -1,0 +1,1414 @@
+u26@u26-VirtualBox:~$ sudo fdisk -l | grep sd
+[sudo] пароль для u26: 
+Диск /dev/sda: 25 GiB, 26843545600 байт, 52428800 секторов
+/dev/sda1     2048     4095     2048     1M BIOS boot
+/dev/sda2     4096  1054719  1050624   513M EFI
+/dev/sda3  1054720 52426751 51372032  24,5G Файловая система Linux
+Диск /dev/sdb: 5 GiB, 5368709120 байт, 10485760 секторов
+Диск /dev/sdc: 5 GiB, 5368709120 байт, 10485760 секторов
+u26@u26-VirtualBox:~$ sudo gdisk /dev/sdb
+GPT fdisk (gdisk) version 1.0.8
+
+Partition table scan:
+  MBR: not present
+  BSD: not present
+  APM: not present
+  GPT: not present
+
+Creating new GPT entries in memory.
+
+Command (? for help): ?
+b	back up GPT data to a file
+c	change a partition's name
+d	delete a partition
+i	show detailed information on a partition
+l	list known partition types
+n	add a new partition
+o	create a new empty GUID partition table (GPT)
+p	print the partition table
+q	quit without saving changes
+r	recovery and transformation options (experts only)
+s	sort partitions
+t	change a partition's type code
+v	verify disk
+w	write table to disk and exit
+x	extra functionality (experts only)
+?	print this menu
+
+Command (? for help): o
+This option deletes all partitions and creates a new protective MBR.
+Proceed? (Y/N): y
+
+Command (? for help): n
+Partition number (1-128, default 1): 
+First sector (34-10485726, default = 2048) or {+-}size{KMGTP}: 
+Last sector (2048-10485726, default = 10485726) or {+-}size{KMGTP}: +2,5G
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): n
+Partition number (2-128, default 2): 
+First sector (34-10485726, default = 4096) or {+-}size{KMGTP}: 
+Last sector (4096-10485726, default = 10485726) or {+-}size{KMGTP}: 
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): w
+
+Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
+
+Do you want to proceed? (Y/N): y
+OK; writing new GUID partition table (GPT) to /dev/sdb.
+The operation has completed successfully.
+u26@u26-VirtualBox:~$ sudo mkfs.ext4 /dev/sdb1
+mke2fs 1.46.5 (30-Dec-2021)
+mkfs.ext4: inode_size (256) * inodes_count (0) too big for a
+	filesystem with 0 blocks, specify higher inode_ratio (-i)
+	or lower inode count (-N).
+
+u26@u26-VirtualBox:~$ fdisk -l
+fdisk: невозможно открыть /dev/loop1: Отказано в доступе
+fdisk: невозможно открыть /dev/loop2: Отказано в доступе
+fdisk: невозможно открыть /dev/loop3: Отказано в доступе
+fdisk: невозможно открыть /dev/loop4: Отказано в доступе
+fdisk: невозможно открыть /dev/loop5: Отказано в доступе
+fdisk: невозможно открыть /dev/loop6: Отказано в доступе
+fdisk: невозможно открыть /dev/loop7: Отказано в доступе
+fdisk: невозможно открыть /dev/sda: Отказано в доступе
+fdisk: невозможно открыть /dev/sdb: Отказано в доступе
+fdisk: невозможно открыть /dev/sdc: Отказано в доступе
+fdisk: невозможно открыть /dev/loop8: Отказано в доступе
+fdisk: невозможно открыть /dev/loop9: Отказано в доступе
+fdisk: невозможно открыть /dev/loop10: Отказано в доступе
+fdisk: невозможно открыть /dev/loop11: Отказано в доступе
+fdisk: невозможно открыть /dev/loop12: Отказано в доступе
+fdisk: невозможно открыть /dev/loop13: Отказано в доступе
+fdisk: невозможно открыть /dev/loop14: Отказано в доступе
+fdisk: невозможно открыть /dev/loop15: Отказано в доступе
+fdisk: невозможно открыть /dev/loop16: Отказано в доступе
+fdisk: невозможно открыть /dev/loop17: Отказано в доступе
+u26@u26-VirtualBox:~$ sudo fdisk -l
+Диск /dev/loop1: 63,75 MiB, 66850816 байт, 130568 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop2: 4 KiB, 4096 байт, 8 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop3: 73,89 MiB, 77475840 байт, 151320 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop4: 73,89 MiB, 77479936 байт, 151328 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop5: 242 MiB, 253751296 байт, 495608 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop6: 349,7 MiB, 366682112 байт, 716176 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop7: 485,52 MiB, 509100032 байт, 994336 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/sda: 25 GiB, 26843545600 байт, 52428800 секторов
+Disk model: VBOX HARDDISK   
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+Тип метки диска: gpt
+Идентификатор диска: 01D7E82B-99A5-445F-B36A-0CC3EE4716DC
+
+Устр-во     начало    Конец  Секторы Размер Тип
+/dev/sda1     2048     4095     2048     1M BIOS boot
+/dev/sda2     4096  1054719  1050624   513M EFI
+/dev/sda3  1054720 52426751 51372032  24,5G Файловая система Linu
+
+
+Диск /dev/sdb: 5 GiB, 5368709120 байт, 10485760 секторов
+Disk model: VBOX HARDDISK   
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+Тип метки диска: gpt
+Идентификатор диска: 78D50B30-F5FE-411D-B99B-7CA2705DC806
+
+Устр-во    начало    Конец  Секторы Размер Тип
+/dev/sdb1    2048     2049        2     1K Файловая система Linux
+/dev/sdb2    4096 10485726 10481631     5G Файловая система Linux
+
+
+Диск /dev/sdc: 5 GiB, 5368709120 байт, 10485760 секторов
+Disk model: VBOX HARDDISK   
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop8: 516,01 MiB, 541073408 байт, 1056784 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop9: 91,69 MiB, 96141312 байт, 187776 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop10: 12,32 MiB, 12922880 байт, 25240 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop11: 241,55 MiB, 253280256 байт, 494688 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop12: 50,89 MiB, 53366784 байт, 104232 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop13: 44,45 MiB, 46604288 байт, 91024 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop14: 568 KiB, 581632 байт, 1136 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop15: 452 KiB, 462848 байт, 904 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop16: 12,2 MiB, 12791808 байт, 24984 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop17: 63,77 MiB, 66867200 байт, 130600 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+u26@u26-VirtualBox:~$ sudo fdisk -l | grep sdb
+Диск /dev/sdb: 5 GiB, 5368709120 байт, 10485760 секторов
+/dev/sdb1    2048     2049        2     1K Файловая система Linux
+/dev/sdb2    4096 10485726 10481631     5G Файловая система Linux
+u26@u26-VirtualBox:~$ sudo gdisk /dev/sdb
+GPT fdisk (gdisk) version 1.0.8
+
+\Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: present
+
+Found valid GPT with protective MBR; using GPT.
+
+Command (? for help): n
+b	back up GPT data to a file
+c	change a partition's name
+d	delete a partition
+i	show detailed information on a partition
+l	list known partition types
+n	add a new partition
+o	create a new empty GUID partition table (GPT)
+p	print the partition table
+q	quit without saving changes
+r	recovery and transformation options (experts only)
+s	sort partitions
+t	change a partition's type code
+v	verify disk
+w	write table to disk and exit
+x	extra functionality (experts only)
+?	print this menu
+
+Command (? for help): n
+Partition number (3-128, default 3): 
+First sector (34-4095, default = 2050) or {+-}size{KMGTP}: 
+Last sector (2050-4095, default = 4095) or {+-}size{KMGTP}: 
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): ?
+b	back up GPT data to a file
+c	change a partition's name
+d	delete a partition
+i	show detailed information on a partition
+l	list known partition types
+n	add a new partition
+o	create a new empty GUID partition table (GPT)
+p	print the partition table
+q	quit without saving changes
+r	recovery and transformation options (experts only)
+s	sort partitions
+t	change a partition's type code
+v	verify disk
+w	write table to disk and exit
+x	extra functionality (experts only)
+?	print this menu
+
+Command (? for help): d
+Partition number (1-3): 1
+
+Command (? for help): d
+Partition number (2-3): 2
+
+Command (? for help): d
+Using 3
+
+Command (? for help): 3
+b	back up GPT data to a file
+c	change a partition's name
+d	delete a partition
+i	show detailed information on a partition
+l	list known partition types
+n	add a new partition
+o	create a new empty GUID partition table (GPT)
+p	print the partition table
+q	quit without saving changes
+r	recovery and transformation options (experts only)
+s	sort partitions
+t	change a partition's type code
+v	verify disk
+w	write table to disk and exit
+x	extra functionality (experts only)
+?	print this menu
+
+Command (? for help): n
+Partition number (1-128, default 1): 
+First sector (34-10485726, default = 2048) or {+-}size{KMGTP}: 
+Last sector (2048-10485726, default = 10485726) or {+-}size{KMGTP}: 
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300):         
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): d
+Using 1
+
+Command (? for help): n
+Partition number (1-128, default 1): 
+First sector (34-10485726, default = 2048) or {+-}size{KMGTP}: 
+
+Last sector (2048-10485726, default = 10485726) or {+-}size{KMGTP}: +2G 
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): n
+Partition number (2-128, default 2): 2
+First sector (34-10485726, default = 4196352) or {+-}size{KMGTP}: 
+Last sector (4196352-10485726, default = 10485726) or {+-}size{KMGTP}: 
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): w
+
+Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
+
+Do you want to proceed? (Y/N): y
+OK; writing new GUID partition table (GPT) to /dev/sdb.
+The operation has completed successfully.
+
+u26@u26-VirtualBox:~$ sudo fdisk -l
+[sudo] пароль для u26: 
+Диск /dev/loop1: 63,75 MiB, 66850816 байт, 130568 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop2: 4 KiB, 4096 байт, 8 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop3: 73,89 MiB, 77475840 байт, 151320 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop4: 73,89 MiB, 77479936 байт, 151328 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop5: 242 MiB, 253751296 байт, 495608 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop6: 349,7 MiB, 366682112 байт, 716176 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop7: 485,52 MiB, 509100032 байт, 994336 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/sda: 25 GiB, 26843545600 байт, 52428800 секторов
+Disk model: VBOX HARDDISK   
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+Тип метки диска: gpt
+Идентификатор диска: 01D7E82B-99A5-445F-B36A-0CC3EE4716DC
+
+Устр-во     начало    Конец  Секторы Размер Тип
+/dev/sda1     2048     4095     2048     1M BIOS boot
+/dev/sda2     4096  1054719  1050624   513M EFI
+/dev/sda3  1054720 52426751 51372032  24,5G Файловая система Linu
+
+
+Диск /dev/sdb: 5 GiB, 5368709120 байт, 10485760 секторов
+Disk model: VBOX HARDDISK   
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+Тип метки диска: gpt
+Идентификатор диска: 78D50B30-F5FE-411D-B99B-7CA2705DC806
+
+Устр-во     начало    Конец Секторы Размер Тип
+/dev/sdb1     2048  4196351 4194304     2G Файловая система Linux
+/dev/sdb2  4196352 10485726 6289375     3G Файловая система Linux
+
+
+Диск /dev/sdc: 5 GiB, 5368709120 байт, 10485760 секторов
+Disk model: VBOX HARDDISK   
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop8: 516,01 MiB, 541073408 байт, 1056784 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop9: 91,69 MiB, 96141312 байт, 187776 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop10: 12,32 MiB, 12922880 байт, 25240 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop11: 241,55 MiB, 253280256 байт, 494688 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop12: 50,89 MiB, 53366784 байт, 104232 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop13: 44,45 MiB, 46604288 байт, 91024 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop14: 568 KiB, 581632 байт, 1136 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop15: 452 KiB, 462848 байт, 904 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop16: 12,2 MiB, 12791808 байт, 24984 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+
+Диск /dev/loop17: 63,77 MiB, 66867200 байт, 130600 секторов
+Единицы: секторов по 1 * 512 = 512 байт
+Размер сектора (логический/физический): 512 байт / 512 байт
+Размер I/O (минимальный/оптимальный): 512 байт / 512 байт
+
+u26@u26-VirtualBox:~$ sudo fdisk -l | grep sdb
+Диск /dev/sdb: 5 GiB, 5368709120 байт, 10485760 секторов
+/dev/sdb1     2048  4196351 4194304     2G Файловая система Linux
+/dev/sdb2  4196352 10485726 6289375     3G Файловая система Linux
+
+u26@u26-VirtualBox:~$ sudo gdisk /dev/sdb
+GPT fdisk (gdisk) version 1.0.8
+
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: present
+
+Found valid GPT with protective MBR; using GPT.
+
+Command (? for help): d
+Partition number (1-2): 1
+
+Command (? for help): d
+Using 2
+
+Command (? for help): 2
+b	back up GPT data to a file
+c	change a partition's name
+d	delete a partition
+i	show detailed information on a partition
+l	list known partition types
+n	add a new partition
+o	create a new empty GUID partition table (GPT)
+p	print the partition table
+q	quit without saving changes
+r	recovery and transformation options (experts only)
+s	sort partitions
+t	change a partition's type code
+v	verify disk
+w	write table to disk and exit
+x	extra functionality (experts only)
+?	print this menu
+
+Command (? for help): n
+Partition number (1-128, default 1): 
+First sector (34-10485726, default = 2048) or {+-}size{KMGTP}: 
+Last sector (2048-10485726, default = 10485726) or {+-}size{KMGTP}: +2G
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): n
+Partition number (2-128, default 2): 
+First sector (34-10485726, default = 4196352) or {+-}size{KMGTP}: 
+Last sector (4196352-10485726, default = 10485726) or {+-}size{KMGTP}: 
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): w
+
+Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
+
+Do you want to proceed? (Y/N): y
+OK; writing new GUID partition table (GPT) to /dev/sdb.
+The operation has completed successfully.
+
+u26@u26-VirtualBox:~$ sudo fdisk -l | grep sdb
+Диск /dev/sdb: 5 GiB, 5368709120 байт, 10485760 секторов
+/dev/sdb1     2048  4196351 4194304     2G Файловая система Linux
+/dev/sdb2  4196352 10485726 6289375     3G Файловая система Linux
+
+u26@u26-VirtualBox:~$ sudo mkfs.ext4 /dev/sdb1
+mke2fs 1.46.5 (30-Dec-2021)
+Creating filesystem with 524288 4k blocks and 131072 inodes
+Filesystem UUID: 9e649f6d-4952-462f-8a42-e310a8ed5194
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376, 294912
+
+Allocating group tables: done                            
+Сохранение таблицы inod'ов: done                            
+Создание журнала (16384 блоков): готово
+Writing superblocks and filesystem accounting information: готово
+
+u26@u26-VirtualBox:~$ sudo mkfs.xfs /dev/sdb2
+meta-data=/dev/sdb2              isize=512    agcount=4, agsize=196543 blks
+         =                       sectsz=512   attr=2, projid32bit=1
+         =                       crc=1        finobt=1, sparse=1, rmapbt=0
+         =                       reflink=1    bigtime=0 inobtcount=0
+data     =                       bsize=4096   blocks=786171, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0, ftype=1
+log      =internal log           bsize=4096   blocks=2560, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+
+u26@u26-VirtualBox:~$ sudo gdisk /dev/sdc
+GPT fdisk (gdisk) version 1.0.8
+
+Partition table scan:
+  MBR: not present
+  BSD: not present
+  APM: not present
+  GPT: not present
+
+Creating new GPT entries in memory.
+
+Command (? for help): o
+This option deletes all partitions and creates a new protective MBR.
+Proceed? (Y/N): y
+
+Command (? for help): n
+Partition number (1-128, default 1): 
+First sector (34-10485726, default = 2048) or {+-}size{KMGTP}: 
+Last sector (2048-10485726, default = 10485726) or {+-}size{KMGTP}: +2G
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): n
+Partition number (2-128, default 2): 
+First sector (34-10485726, default = 4196352) or {+-}size{KMGTP}: 
+Last sector (4196352-10485726, default = 10485726) or {+-}size{KMGTP}: 
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): w
+
+Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
+
+Do you want to proceed? (Y/N): y
+OK; writing new GUID partition table (GPT) to /dev/sdc.
+The operation has completed successfully.
+u26@u26-VirtualBox:~$ sudo fdisk -l | grep sdc
+Диск /dev/sdc: 5 GiB, 5368709120 байт, 10485760 секторов
+/dev/sdc1     2048  4196351 4194304     2G Файловая система Linux
+/dev/sdc2  4196352 10485726 6289375     3G Файловая система Linux
+
+u26@u26-VirtualBox:~$ sudo mkfs.btrfs
+btrfs-progs v5.16.2
+See http://btrfs.wiki.kernel.org for more information.
+
+Usage: mkfs.btrfs [options] dev [ dev ... ]
+Options:
+  allocation profiles:
+	-d|--data PROFILE           data profile, raid0, raid1, raid1c3, raid1c4, raid5, raid6, raid10, dup or single
+	-m|--metadata PROFILE       metadata profile, values like for data profile
+	-M|--mixed                  mix metadata and data together
+  features:
+	--csum TYPE
+	--checksum TYPE             checksum algorithm to use, crc32c (default), xxhash, sha256, blake2
+	-n|--nodesize SIZE          size of btree nodes
+	-s|--sectorsize SIZE        data block size (may not be mountable by current kernel)
+	-O|--features LIST          comma separated list of filesystem features (use '-O list-all' to list features)
+	-R|--runtime-features LIST  comma separated list of runtime features (use '-R list-all' to list runtime features)
+	-L|--label LABEL            set the filesystem label
+	-U|--uuid UUID              specify the filesystem UUID (must be unique)
+  creation:
+	-b|--byte-count SIZE        set filesystem size to SIZE (on the first device)
+	-r|--rootdir DIR            copy files from DIR to the image root directory
+	--shrink                    (with --rootdir) shrink the filled filesystem to minimal size
+	-K|--nodiscard              do not perform whole device TRIM
+	-f|--force                  force overwrite of existing filesystem
+  general:
+	-q|--quiet                  no messages except errors
+	-v|--verbose                increase verbosity level, default is 1
+	-V|--version                print the mkfs.btrfs version and exit
+	--help                      print this help and exit
+  deprecated:
+	-l|--leafsize SIZE          deprecated, alias for nodesize
+
+u26@u26-VirtualBox:~$ sudo mkfs.btrfs
+btrfs-progs v5.16.2
+See http://btrfs.wiki.kernel.org for more information.
+
+Usage: mkfs.btrfs [options] dev [ dev ... ]
+Options:
+  allocation profiles:
+	-d|--data PROFILE           data profile, raid0, raid1, raid1c3, raid1c4, raid5, raid6, raid10, dup or single
+	-m|--metadata PROFILE       metadata profile, values like for data profile
+	-M|--mixed                  mix metadata and data together
+  features:
+	--csum TYPE
+	--checksum TYPE             checksum algorithm to use, crc32c (default), xxhash, sha256, blake2
+	-n|--nodesize SIZE          size of btree nodes
+	-s|--sectorsize SIZE        data block size (may not be mountable by current kernel)
+	-O|--features LIST          comma separated list of filesystem features (use '-O list-all' to list features)
+	-R|--runtime-features LIST  comma separated list of runtime features (use '-R list-all' to list runtime features)
+	-L|--label LABEL            set the filesystem label
+	-U|--uuid UUID              specify the filesystem UUID (must be unique)
+  creation:
+	-b|--byte-count SIZE        set filesystem size to SIZE (on the first device)
+	-r|--rootdir DIR            copy files from DIR to the image root directory
+	--shrink                    (with --rootdir) shrink the filled filesystem to minimal size
+	-K|--nodiscard              do not perform whole device TRIM
+	-f|--force                  force overwrite of existing filesystem
+  general:
+	-q|--quiet                  no messages except errors
+	-v|--verbose                increase verbosity level, default is 1
+	-V|--version                print the mkfs.btrfs version and exit
+	--help                      print this help and exit
+  deprecated:
+	-l|--leafsize SIZE          deprecated, alias for nodesize
+u26@u26-VirtualBox:~$ sudo mkfs.btrfs /dev/sdc1
+btrfs-progs v5.16.2
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/sdc1 (2.00GiB) ...
+NOTE: several default settings have changed in version 5.15, please make sure
+      this does not affect your deployments:
+      - DUP for metadata (-m dup)
+      - enabled no-holes (-O no-holes)
+      - enabled free-space-tree (-R free-space-tree)
+
+Label:              (null)
+UUID:               8f73044a-33df-429f-bec8-0f9fff29d508
+Node size:          16384
+Sector size:        4096
+Filesystem size:    2.00GiB
+Block group profiles:
+  Data:             single            8.00MiB
+  Metadata:         DUP             102.38MiB
+  System:           DUP               8.00MiB
+SSD detected:       no
+Zoned device:       no
+Incompat features:  extref, skinny-metadata, no-holes
+Runtime features:   free-space-tree
+Checksum:           crc32c
+Number of devices:  1
+Devices:
+   ID        SIZE  PATH
+    1     2.00GiB  /dev/sdc1
+
+u26@u26-VirtualBox:~$ sudo mkfs.ext2 /dev/sdc2
+mke2fs 1.46.5 (30-Dec-2021)
+Creating filesystem with 786171 4k blocks and 196608 inodes
+Filesystem UUID: dd03368e-9876-4564-a409-7f0cfaeac551
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376, 294912
+
+Allocating group tables: done                            
+Сохранение таблицы inod'ов: done                            
+Writing superblocks and filesystem accounting information: готово
+
+u26@u26-VirtualBox:~$ sudo fdisk -l | grep sd
+Диск /dev/sda: 25 GiB, 26843545600 байт, 52428800 секторов
+/dev/sda1     2048     4095     2048     1M BIOS boot
+/dev/sda2     4096  1054719  1050624   513M EFI
+/dev/sda3  1054720 52426751 51372032  24,5G Файловая система Linux
+Диск /dev/sdb: 5 GiB, 5368709120 байт, 10485760 секторов
+/dev/sdb1     2048  4196351 4194304     2G Файловая система Linux
+/dev/sdb2  4196352 10485726 6289375     3G Файловая система Linux
+Диск /dev/sdc: 5 GiB, 5368709120 байт, 10485760 секторов
+/dev/sdc1     2048  4196351 4194304     2G Файловая система Linux
+/dev/sdc2  4196352 10485726 6289375     3G Файловая система Linux
+
+u26@u26-VirtualBox:~$ sudo lsblk /dev/sdc1
+NAME MAJ:MIN RM SIZE RO TYPE MOUNTPOINTS
+sdc1   8:33   0   2G  0 part 
+u26@u26-VirtualBox:~$ sudo lsblk -f /dev/sdc1
+NAME FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+sdc1 btrfs              8f73044a-33df-429f-bec8-0f9fff29d508                
+u26@u26-VirtualBox:~$ sudo lsblk -f /dev/sdc2
+NAME FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+sdc2 ext2   1.0         dd03368e-9876-4564-a409-7f0cfaeac551                
+u26@u26-VirtualBox:~$ sudo -s
+root@u26-VirtualBox:/home/u26# cd /mnt
+
+u26@u26-VirtualBox:~$ sudo -s
+root@u26-VirtualBox:/home/u26# cd /mnt
+root@u26-VirtualBox:/mnt# mkdir xfs
+root@u26-VirtualBox:/mnt# mkdir ext4
+root@u26-VirtualBox:/mnt# mkdir dtrfs
+root@u26-VirtualBox:/mnt# mkdir xfs2
+root@u26-VirtualBox:/mnt# mkdir ext2
+root@u26-VirtualBox:/mnt# mkdir dtrfs2
+root@u26-VirtualBox:/mnt# mkdir btrfs2
+root@u26-VirtualBox:/mnt# mkdir btrfs
+root@u26-VirtualBox:/mnt# chown u26:u26 ext4 ext2 xfs btrfs xfs2 btrfs2
+root@u26-VirtualBox:/mnt# ls -l
+итого 32
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:25 btrfs
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:24 btrfs2
+drwxr-xr-x 2 root root 4096 мая 16 11:23 dtrfs
+drwxr-xr-x 2 root root 4096 мая 16 11:23 dtrfs2
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:23 ext2
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:23 ext4
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:22 xfs
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:23 xfs2
+
+root@u26-VirtualBox:/mnt# mount /dev/sdb1 ext4
+root@u26-VirtualBox:/mnt# ls -l ext4/
+итого 16
+drwx------ 2 root root 16384 мая 16 10:16 lost+found
+
+root@u26-VirtualBox:/mnt# mount /dev/sdb2 xfs
+root@u26-VirtualBox:/mnt# mount /dev/sdc1 btrfs
+root@u26-VirtualBox:/mnt# mount /dev/sdc2 ext2
+root@u26-VirtualBox:/mnt# ls -l ext2/
+итого 16
+drwx------ 2 root root 16384 мая 16 10:40 lost+found
+root@u26-VirtualBox:/mnt# exit 
+exit
+u26@u26-VirtualBox:~$ cd ext4
+bash: cd: ext4: Нет такого файла или каталога
+u26@u26-VirtualBox:~$ cd /mnt/ext
+bash: cd: /mnt/ext: Нет такого файла или каталога
+u26@u26-VirtualBox:~$ cd /mnt/ext4
+u26@u26-VirtualBox:/mnt/ext4$ ls -l
+итого 16
+drwx------ 2 root root 16384 мая 16 10:16 lost+found
+u26@u26-VirtualBox:/mnt/ext4$ touch test.txt
+touch: невозможно выполнить touch для 'test.txt': Отказано в доступе
+u26@u26-VirtualBox:/mnt/ext4$ sudo ls -l
+[sudo] пароль для u26: 
+Попробуйте ещё раз.
+[sudo] пароль для u26: 
+итого 16
+drwx------ 2 root root 16384 мая 16 10:16 lost+found
+
+u26@u26-VirtualBox:/mnt/ext4$ sudo ls -l ../
+итого 40
+drwxr-xr-x 1 root root    0 мая 16 10:34 btrfs
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:24 btrfs2
+drwxr-xr-x 2 root root 4096 мая 16 11:23 dtrfs
+drwxr-xr-x 2 root root 4096 мая 16 11:23 dtrfs2
+drwxr-xr-x 3 root root 4096 мая 16 10:40 ext2
+drwxr-xr-x 3 root root 4096 мая 16 10:16 ext4
+drwxr-xr-x 2 root root    6 мая 16 10:26 xfs
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:23 xfs2
+u26@u26-VirtualBox:/mnt/ext4$ sudo -s
+root@u26-VirtualBox:/mnt/ext4# chown u26:u26 ext4 ext2 xfs btrfs xfs2 btrfs2
+chown: невозможно получить доступ к 'ext4': Нет такого файла или каталога
+chown: невозможно получить доступ к 'ext2': Нет такого файла или каталога
+chown: невозможно получить доступ к 'xfs': Нет такого файла или каталога
+chown: невозможно получить доступ к 'btrfs': Нет такого файла или каталога
+chown: невозможно получить доступ к 'xfs2': Нет такого файла или каталога
+chown: невозможно получить доступ к 'btrfs2': Нет такого файла или каталога
+root@u26-VirtualBox:/mnt/ext4# cd mnt
+bash: cd: mnt: Нет такого файла или каталога
+root@u26-VirtualBox:/mnt/ext4# cd /mnt
+root@u26-VirtualBox:/mnt# chown u26:u26 ext4 ext2 xfs btrfs xfs2 btrfs2
+root@u26-VirtualBox:/mnt# exit
+exit
+
+u26@u26-VirtualBox:/mnt/ext4$ toouch test.txt
+Команда «toouch» не найдена. Возможно, вы имели в виду:
+  команда 'touch' из deb-пакета coreutils (8.32-4.1ubuntu1.2)
+Попробуйте: sudo apt install <имя_deb-пакета>
+u26@u26-VirtualBox:/mnt/ext4$ touch test.txt
+u26@u26-VirtualBox:/mnt/ext4$ ls -l
+итого 16
+drwx------ 2 root root 16384 мая 16 10:16 lost+found
+-rw-rw-r-- 1 u26  u26      0 мая 16 11:57 test.txt
+u26@u26-VirtualBox:/mnt/ext4$ cat > test.txt
+12345
+1234 
+123^C
+u26@u26-VirtualBox:/mnt/ext4$ cat >> test.txt
+123    
+1234
+^C          
+u26@u26-VirtualBox:/mnt/ext4$ cat test.txt
+12345
+1234
+123
+1234
+u26@u26-VirtualBox:/mnt/ext4$ sudo lsdlk -f /dev/sdb1 >> test.txt
+sudo: lsdlk: команда не найдена
+u26@u26-VirtualBox:/mnt/ext4$ sudo lsblk -f /dev/sdb1 >> test.txt
+u26@u26-VirtualBox:/mnt/ext4$ cat test.txt
+12345
+1234
+123
+1234
+NAME FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+sdb1 ext4   1.0         9e649f6d-4952-462f-8a42-e310a8ed5194    2,9G     2% /mnt/xfs
+                                                                            /mnt/ext4
+
+u26@u26-VirtualBox:/mnt/ext4$ sudo lsblk -f /dev/sdc1
+NAME FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+sdc1 btrfs              8f73044a-33df-429f-bec8-0f9fff29d508    1,8G     0% /mnt/btrfs
+u26@u26-VirtualBox:/mnt/ext4$ sudo lsblk -f /dev/sdc2
+NAME FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+sdc2 ext2   1.0         dd03368e-9876-4564-a409-7f0cfaeac551    2,8G     0% /mnt/ext2
+u26@u26-VirtualBox:/mnt/ext4$ df
+Файл.система   1K-блоков Использовано Доступно Использовано% Cмонтировано в
+tmpfs             201584         1664   199920            1% /run
+/dev/sda3       25106692     21511396  2294612           91% /
+tmpfs            1007916            0  1007916            0% /dev/shm
+tmpfs               5120            4     5116            1% /run/lock
+/dev/sda2         524252         6228   518024            2% /boot/efi
+tmpfs             201580          108   201472            1% /run/user/1000
+/dev/sdb1        1992552           28  1871284            1% /mnt/ext4
+/dev/sdb2        3134444        54876  3079568            2% /mnt/xfs
+/dev/sdc1        2097152         5920  1870080            1% /mnt/btrfs
+/dev/sdc2        3090708           24  2933452            1% /mnt/ext2
+
+u26@u26-VirtualBox:/mnt/ext4$ df -h
+Файл.система   Размер Использовано  Дост Использовано% Cмонтировано в
+tmpfs            197M         1,7M  196M            1% /run
+/dev/sda3         24G          21G  2,2G           91% /
+tmpfs            985M            0  985M            0% /dev/shm
+tmpfs            5,0M         4,0K  5,0M            1% /run/lock
+/dev/sda2        512M         6,1M  506M            2% /boot/efi
+tmpfs            197M         108K  197M            1% /run/user/1000
+/dev/sdb1        2,0G          28K  1,8G            1% /mnt/ext4
+/dev/sdb2        3,0G          54M  3,0G            2% /mnt/xfs
+/dev/sdc1        2,0G         5,8M  1,8G            1% /mnt/btrfs
+/dev/sdc2        3,0G          24K  2,8G            1% /mnt/ext2
+
+u26@u26-VirtualBox:/mnt/ext4$ df -i
+Файл.система    Iнодов IИспользовано IСвободно IИспользовано% Cмонтировано в
+tmpfs           251979          1130    250849             1% /run
+/dev/sda3      1605632        347255   1258377            22% /
+tmpfs           251979             1    251978             1% /dev/shm
+tmpfs           251979             4    251975             1% /run/lock
+/dev/sda2            0             0         0              - /boot/efi
+tmpfs            50395           148     50247             1% /run/user/1000
+/dev/sdb1       131072            12    131060             1% /mnt/ext4
+/dev/sdb2      1572288             3   1572285             1% /mnt/xfs
+/dev/sdc1            0             0         0              - /mnt/btrfs
+/dev/sdc2       196608            11    196597             1% /mnt/ext2
+
+u26@u26-VirtualBox:/mnt/ext4$ ls -li test.txt
+12 -rw-rw-r-- 1 u26 u26 279 мая 16 12:01 test.txt
+u26@u26-VirtualBox:/mnt/ext4$ touch test2.txt
+u26@u26-VirtualBox:/mnt/ext4$ ls -li test2.txt
+13 -rw-rw-r-- 1 u26 u26 0 мая 16 12:05 test2.txt
+u26@u26-VirtualBox:/mnt/ext4$ cd ..
+u26@u26-VirtualBox:/mnt$ cd dtrfs
+u26@u26-VirtualBox:/mnt/dtrfs$ touch test.txt
+touch: невозможно выполнить touch для 'test.txt': Отказано в доступе
+u26@u26-VirtualBox:/mnt/dtrfs$ sudo chown u26:u26 .
+u26@u26-VirtualBox:/mnt/dtrfs$ touch test.txt
+u26@u26-VirtualBox:/mnt/dtrfs$ ls -li test.txt
+1310731 -rw-rw-r-- 1 u26 u26 0 мая 16 12:10 test.txt
+u26@u26-VirtualBox:/mnt/dtrfs$ cd ..
+u26@u26-VirtualBox:/mnt$ cd xfs
+u26@u26-VirtualBox:/mnt/xfs$ touch test.txt
+u26@u26-VirtualBox:/mnt/xfs$ ls -li test.txt
+131 -rw-rw-r-- 1 u26 u26 0 мая 16 12:12 test.txt
+u26@u26-VirtualBox:/mnt/xfs$ cd ..
+u26@u26-VirtualBox:/mnt$ ls -li
+итого 40
+    256 drwxr-xr-x 1 u26  u26     0 мая 16 10:34 btrfs
+1310729 drwxr-xr-x 2 u26  u26  4096 мая 16 11:24 btrfs2
+1310725 drwxr-xr-x 2 u26  u26  4096 мая 16 12:10 dtrfs
+1310728 drwxr-xr-x 2 root root 4096 мая 16 11:23 dtrfs2
+      2 drwxr-xr-x 3 u26  u26  4096 мая 16 10:40 ext2
+      2 drwxr-xr-x 3 u26  u26  4096 мая 16 12:05 ext4
+    128 drwxr-xr-x 2 u26  u26    22 мая 16 12:12 xfs
+1310726 drwxr-xr-x 2 u26  u26  4096 мая 16 11:23 xfs2
+u26@u26-VirtualBox:/mnt$ df -i .
+Файл.система    Iнодов IИспользовано IСвободно IИспользовано% Cмонтировано в
+/dev/sda3      1605632        347252   1258380            22% /
+u26@u26-VirtualBox:/mnt$ cd ext4
+u26@u26-VirtualBox:/mnt/ext4$ df -i .
+Файл.система   Iнодов IИспользовано IСвободно IИспользовано% Cмонтировано в
+/dev/sdb1      131072            13    131059             1% /mnt/ext4
+u26@u26-VirtualBox:/mnt/ext4$ cd ../ext2
+u26@u26-VirtualBox:/mnt/ext2$ df -i .
+Файл.система   Iнодов IИспользовано IСвободно IИспользовано% Cмонтировано в
+/dev/sdc2      196608            11    196597             1% /mnt/ext2
+
+u26@u26-VirtualBox:/mnt/ext2$ ls -li /
+итого 2744400
+     13 lrwxrwxrwx   1 root root          7 фев  6 13:16 bin -> usr/bin
+ 917505 drwxr-xr-x   4 root root       4096 мая 16 10:32 boot
+1179650 drwxrwxr-x   2 root root       4096 фев  6 13:20 cdrom
+      1 drwxr-xr-x  19 root root       4360 мая 16 10:29 dev
+ 524289 drwxr-xr-x 132 root root      12288 мая 16 10:42 etc
+1179649 drwxr-xr-x   3 root root       4096 фев  6 13:22 home
+     14 lrwxrwxrwx   1 root root          7 фев  6 13:16 lib -> usr/lib
+     15 lrwxrwxrwx   1 root root          9 фев  6 13:16 lib32 -> usr/lib32
+     16 lrwxrwxrwx   1 root root          9 фев  6 13:16 lib64 -> usr/lib64
+     17 lrwxrwxrwx   1 root root         10 фев  6 13:16 libx32 -> usr/libx32
+     11 drwx------   2 root root      16384 фев  6 13:16 lost+found
+1441793 drwxr-xr-x   2 root root       4096 авг  8  2023 media
+1310721 drwxr-xr-x  10 root root       4096 мая 16 11:25 mnt
+ 262145 drwxr-xr-x   3 root root       4096 мар 21 12:04 opt
+      1 dr-xr-xr-x 272 root root          0 мая 16 09:04 proc
+ 786433 drwx------   6 root root       4096 мая 16 11:49 root
+      1 drwxr-xr-x  37 root root       1000 мая 16 10:44 run
+     18 lrwxrwxrwx   1 root root          8 фев  6 13:16 sbin -> usr/sbin
+ 786434 drwxr-xr-x  13 root root       4096 авг  8  2023 snap
+ 262146 drwxr-xr-x   2 root root       4096 авг  8  2023 srv
+     12 -rw-------   1 root root 2810183680 фев  6 13:16 swapfile
+      1 dr-xr-xr-x  13 root root          0 мая 16 09:04 sys
+1441794 drwxrwxrwt  19 root root       4096 мая 16 12:12 tmp
+ 393218 drwxr-xr-x  14 root root       4096 авг  8  2023 usr
+ 524291 drwxr-xr-x  14 root root       4096 авг  8  2023 var
+
+u26@u26-VirtualBox:/mnt/ext2$ du
+du: невозможно прочитать каталог './lost+found': Отказано в доступе
+16	./lost+found
+20	.
+u26@u26-VirtualBox:/mnt/ext2$ sudo du
+16	./lost+found
+20	.
+u26@u26-VirtualBox:/mnt/ext2$ cd ..
+u26@u26-VirtualBox:/mnt$ cd ext4
+u26@u26-VirtualBox:/mnt/ext4$ cd mnt
+bash: cd: mnt: Нет такого файла или каталога
+u26@u26-VirtualBox:/mnt/ext4$ cd ..
+u26@u26-VirtualBox:/mnt$ sudo du -h 
+4,0K	./dtrfs2
+0	./xfs
+4,0K	./dtrfs
+16K	./ext2/lost+found
+20K	./ext2
+16K	./btrfs
+16K	./ext4/lost+found
+24K	./ext4
+4,0K	./btrfs2
+4,0K	./xfs2
+80K	.
+u26@u26-VirtualBox:/mnt$ cd /etc/
+u26@u26-VirtualBox:/etc$ sudo du -h
+4,0K	./avahi/services
+20K	./avahi
+12K	./sane.d/dll.d
+356K	./sane.d
+8,0K	./dconf/profile
+8,0K	./dconf/db/ibus.d
+16K	./dconf/db
+28K	./dconf
+4,0K	./NetworkManager/dnsmasq-shared.d
+8,0K	./NetworkManager/system-connections
+4,0K	./NetworkManager/dispatcher.d/pre-down.d
+4,0K	./NetworkManager/dispatcher.d/no-wait.d
+4,0K	./NetworkManager/dispatcher.d/pre-up.d
+20K	./NetworkManager/dispatcher.d
+8,0K	./NetworkManager/conf.d
+4,0K	./NetworkManager/dnsmasq.d
+52K	./NetworkManager
+12K	./ld.so.conf.d
+4,0K	./udev/hwdb.d
+96K	./udev/rules.d
+108K	./udev
+12K	./insserv.conf.d
+64K	./logrotate.d
+4,0K	./security/limits.d
+4,0K	./security/namespace.d
+60K	./security
+52K	./xml
+4,0K	./libreoffice/registry/res
+8,0K	./libreoffice/registry
+12K	./libreoffice
+12K	./cron.monthly
+4,0K	./dictionaries-common
+4,0K	./rcS.d
+8,0K	./default/grub.d
+132K	./default
+8,0K	./pcmcia
+4,0K	./systemd/network
+4,0K	./systemd/system/final.target.wants
+4,0K	./systemd/system/sysinit.target.wants
+4,0K	./systemd/system/getty.target.wants
+16K	./systemd/system/snapd.mounts.target.wants
+4,0K	./systemd/system/bluetooth.target.wants
+4,0K	./systemd/system/network-online.target.wants
+4,0K	./systemd/system/paths.target.wants
+4,0K	./systemd/system/graphical.target.wants
+4,0K	./systemd/system/rescue.target.wants
+4,0K	./systemd/system/oem-config.service.wants
+4,0K	./systemd/system/timers.target.wants
+4,0K	./systemd/system/open-vm-tools.service.requires
+4,0K	./systemd/system/display-manager.service.wants
+4,0K	./systemd/system/sleep.target.wants
+4,0K	./systemd/system/cloud-final.service.wants
+4,0K	./systemd/system/printer.target.wants
+4,0K	./systemd/system/emergency.target.wants
+4,0K	./systemd/system/sockets.target.wants
+16K	./systemd/system/multi-user.target.wants
+176K	./systemd/system
+8,0K	./systemd/user/default.target.wants
+8,0K	./systemd/user/gnome-session.target.wants
+4,0K	./systemd/user/pipewire.service.wants
+4,0K	./systemd/user/sockets.target.wants
+8,0K	./systemd/user/graphical-session-pre.target.wants
+40K	./systemd/user
+264K	./systemd
+4,0K	./apm/resume.d
+4,0K	./apm/suspend.d
+8,0K	./apm/scripts.d
+20K	./apm
+44K	./wpa_supplicant
+36K	./cron.daily
+8,0K	./python3
+4,0K	./initramfs-tools/scripts/local-premount
+4,0K	./initramfs-tools/scripts/nfs-premount
+4,0K	./initramfs-tools/scripts/nfs-top
+4,0K	./initramfs-tools/scripts/panic
+4,0K	./initramfs-tools/scripts/nfs-bottom
+4,0K	./initramfs-tools/scripts/local-top
+4,0K	./initramfs-tools/scripts/init-bottom
+4,0K	./initramfs-tools/scripts/init-top
+4,0K	./initramfs-tools/scripts/local-bottom
+4,0K	./initramfs-tools/scripts/init-premount
+44K	./initramfs-tools/scripts
+4,0K	./initramfs-tools/conf.d
+4,0K	./initramfs-tools/hooks
+68K	./initramfs-tools
+4,0K	./rc4.d
+4,0K	./gss/mech.d
+8,0K	./gss
+16K	./network/if-pre-up.d
+20K	./network/if-up.d
+16K	./network/if-down.d
+8,0K	./network/if-post-down.d
+64K	./network
+8,0K	./modules-load.d
+44K	./modprobe.d
+36K	./sysctl.d
+4,0K	./openvpn/server
+4,0K	./openvpn/client
+16K	./openvpn
+4,0K	./tmpfiles.d
+12K	./libnl-3
+36K	./fonts/conf.d
+420K	./fonts/conf.avail
+464K	./fonts
+4,0K	./rc6.d
+4,0K	./rc2.d
+8,0K	./hp
+4,0K	./ssh/ssh_config.d
+12K	./ssh
+8,0K	./containerd
+12K	./gtk-3.0
+4,0K	./sensors.d
+128K	./pam.d
+4,0K	./docker
+12K	./groff
+8,0K	./perl/Net
+12K	./perl
+8,0K	./apparmor.d/tunables/multiarch.d
+8,0K	./apparmor.d/tunables/xdg-user-dirs.d
+12K	./apparmor.d/tunables/home.d
+88K	./apparmor.d/tunables
+4,0K	./apparmor.d/dhcpd.d
+8,0K	./apparmor.d/local
+4,0K	./apparmor.d/force-complain
+4,0K	./apparmor.d/disable
+16K	./apparmor.d/abi
+24K	./apparmor.d/abstractions/apparmor_api
+48K	./apparmor.d/abstractions/ubuntu-browsers.d
+532K	./apparmor.d/abstractions
+760K	./apparmor.d
+4,0K	./binfmt.d
+4,0K	./gdb/gdbinit.d
+12K	./gdb
+12K	./vim
+4,0K	./pulse/client.conf.d
+4,0K	./pulse/default.pa.d
+32K	./pulse
+4,0K	./update-notifier
+12K	./environment.d
+8,0K	./cracklib
+16K	./pki/fwupd
+16K	./pki/fwupd-metadata
+36K	./pki
+4,0K	./opt
+924K	./brltty/Text
+16K	./brltty/Attributes
+40K	./brltty/Keyboard
+1,5M	./brltty/Contraction
+8,0K	./brltty/Input/bg
+16K	./brltty/Input/mm
+8,0K	./brltty/Input/cb
+68K	./brltty/Input/hw
+8,0K	./brltty/Input/cn
+64K	./brltty/Input/eu
+8,0K	./brltty/Input/vd
+76K	./brltty/Input/al
+8,0K	./brltty/Input/at
+12K	./brltty/Input/ec
+8,0K	./brltty/Input/lt
+12K	./brltty/Input/hd
+8,0K	./brltty/Input/bd
+8,0K	./brltty/Input/pg
+8,0K	./brltty/Input/tt
+16K	./brltty/Input/vo
+80K	./brltty/Input/hm
+48K	./brltty/Input/fs
+4,0K	./brltty/Input/xw
+160K	./brltty/Input/pm
+8,0K	./brltty/Input/no
+16K	./brltty/Input/sk
+36K	./brltty/Input/md
+8,0K	./brltty/Input/mb
+16K	./brltty/Input/bn
+8,0K	./brltty/Input/ba
+8,0K	./brltty/Input/vr
+28K	./brltty/Input/ic
+8,0K	./brltty/Input/mn
+108K	./brltty/Input/ht
+12K	./brltty/Input/ce
+8,0K	./brltty/Input/fa
+8,0K	./brltty/Input/tn
+12K	./brltty/Input/bl
+8,0K	./brltty/Input/np
+60K	./brltty/Input/ts
+12K	./brltty/Input/bp
+8,0K	./brltty/Input/vs
+16K	./brltty/Input/ir
+8,0K	./brltty/Input/lb
+36K	./brltty/Input/mt
+144K	./brltty/Input/bm
+1,3M	./brltty/Input
+3,7M	./brltty
+12K	./dhcp/dhclient-enter-hooks.d
+24K	./dhcp/dhclient-exit-hooks.d
+4,0K	./dhcp/ddns-keys
+60K	./dhcp
+48K	./profile.d
+8,0K	./thermald
+8,0K	./update-manager/release-upgrades.d
+20K	./update-manager
+12K	./pm/sleep.d
+16K	./pm
+8,0K	./snmp
+16K	./cron.d
+4,0K	./polkit-1/localauthority/10-vendor.d
+4,0K	./polkit-1/localauthority/50-local.d
+4,0K	./polkit-1/localauthority/90-mandatory.d
+4,0K	./polkit-1/localauthority/20-org.d
+4,0K	./polkit-1/localauthority/30-site.d
+24K	./polkit-1/localauthority
+12K	./polkit-1/localauthority.conf.d
+40K	./polkit-1
+8,0K	./ubuntu-advantage
+16K	./bluetooth
+4,0K	./libpaper.d
+20K	./X11/cursors
+16K	./X11/xinit
+12K	./X11/fonts/misc
+8,0K	./X11/fonts/Type1
+24K	./X11/fonts
+8,0K	./X11/Xresources
+4,0K	./X11/xorg.conf.d
+64K	./X11/Xsession.d
+8,0K	./X11/xsm
+8,0K	./X11/Xreset.d
+4,0K	./X11/xkb
+204K	./X11/app-defaults
+412K	./X11
+4,0K	./glvnd/egl_vendor.d
+8,0K	./glvnd
+8,0K	./cron.hourly
+4,0K	./kernel/install.d
+8,0K	./kernel/preinst.d
+24K	./kernel/postinst.d
+12K	./kernel/postrm.d
+52K	./kernel
+144K	./grub.d
+8,0K	./iproute2/rt_tables.d
+8,0K	./iproute2/rt_protos.d
+56K	./iproute2
+4,0K	./ghostscript/fontmap.d
+24K	./ghostscript/cidfmap.d
+32K	./ghostscript
+8,0K	./terminfo
+12K	./ufw/applications.d
+60K	./ufw
+8,0K	./gtk-2.0
+4,0K	./rc0.d
+172K	./console-setup
+8,0K	./UPower
+4,0K	./apparmor/init/network-interface-security
+8,0K	./apparmor/init
+16K	./apparmor
+52K	./update-motd.d
+8,0K	./depmod.d
+8,0K	./sgml/docbook-xml/4.3
+8,0K	./sgml/docbook-xml/4.1.2
+8,0K	./sgml/docbook-xml/4.0
+8,0K	./sgml/docbook-xml/4.2
+8,0K	./sgml/docbook-xml/4.5
+8,0K	./sgml/docbook-xml/4.4
+52K	./sgml/docbook-xml
+68K	./sgml
+12K	./PackageKit
+8,0K	./emacs/site-start.d
+12K	./emacs
+8,0K	./ssl/private
+640K	./ssl/certs
+668K	./ssl
+8,0K	./geoclue
+24K	./vmware-tools/scripts/vmware
+28K	./vmware-tools/scripts
+180K	./vmware-tools/vgauth/schemas
+184K	./vmware-tools/vgauth
+284K	./vmware-tools
+8,0K	./alsa/conf.d
+12K	./alsa
+4,0K	./rc5.d
+24K	./fwupd/remotes.d
+48K	./fwupd
+4,0K	./ca-certificates/update.d
+8,0K	./ca-certificates
+8,0K	./sudoers.d
+8,0K	./ldap
+12K	./apt/sources.list.d
+12K	./apt/preferences.d
+4,0K	./apt/keyrings
+12K	./apt/trusted.gpg.d
+84K	./apt/apt.conf.d
+4,0K	./apt/auth.conf.d
+140K	./apt
+8,0K	./firefox/pref
+12K	./firefox
+4,0K	./rc3.d
+16K	./cupshelpers
+16K	./chatscripts
+20K	./netplan
+16K	./bash_completion.d
+8,0K	./libblockdev/conf.d
+12K	./libblockdev
+28K	./gnome
+108K	./dbus-1/system.d
+4,0K	./dbus-1/session.d
+116K	./dbus-1
+24K	./logcheck/ignore.d.server
+8,0K	./logcheck/ignore.d.paranoid
+36K	./logcheck
+8,0K	./speech-dispatcher/clients
+80K	./speech-dispatcher/modules
+108K	./speech-dispatcher
+12K	./ppp/ip-up.d
+8,0K	./ppp/peers
+4,0K	./ppp/ipv6-down.d
+4,0K	./ppp/ipv6-up.d
+4,0K	./ppp/ip-pre-up.d
+12K	./ppp/ip-down.d
+96K	./ppp
+4,0K	./xdg/systemd
+180K	./xdg/autostart
+20K	./xdg/menus
+20K	./xdg/Xwayland-session.d
+236K	./xdg
+4,0K	./vulkan/explicit_layer.d
+4,0K	./vulkan/implicit_layer.d
+4,0K	./vulkan/icd.d
+16K	./vulkan
+12K	./udisks2
+4,0K	./ifplugd/action.d
+8,0K	./ifplugd
+16K	./cron.weekly
+8,0K	./ipp-usb
+4,0K	./cups/interfaces
+4,0K	./cups/ssl
+4,0K	./cups/ppd
+80K	./cups
+16K	./skel
+4,0K	./dpkg/dpkg.cfg.d
+12K	./dpkg/origins
+24K	./dpkg
+4,0K	./ModemManager/connection.d
+4,0K	./ModemManager/fcc-unlock.d
+12K	./ModemManager
+12K	./rsyslog.d
+180K	./init.d
+36K	./acpi/events
+60K	./acpi
+52K	./bind
+4,0K	./networkd-dispatcher/degraded.d
+4,0K	./networkd-dispatcher/off.d
+4,0K	./networkd-dispatcher/carrier.d
+4,0K	./networkd-dispatcher/routable.d
+4,0K	./networkd-dispatcher/no-carrier.d
+4,0K	./networkd-dispatcher/dormant.d
+28K	./networkd-dispatcher
+8,0K	./init
+8,0K	./gdm3/Init
+8,0K	./gdm3/Prime
+8,0K	./gdm3/PostSession
+8,0K	./gdm3/PrimeOff
+8,0K	./gdm3/PreSession
+8,0K	./gdm3/PostLogin
+72K	./gdm3
+12K	./apport/blacklist.d
+20K	./apport
+12K	./alternatives
+8,0K	./newt
+4,0K	./usb_modeswitch.d
+8,0K	./selinux
+8,0K	./python3.10
+4,0K	./rc1.d
+12M	.
+u26@u26-VirtualBox:/etc$ sudo du -hs
+12M	.
+u26@u26-VirtualBox:/etc$ sudo du -hs ./systemd
+264K	./systemd
+u26@u26-VirtualBox:/etc$ cd..
+cd..: команда не найдена
+u26@u26-VirtualBox:/etc$ cd .. 
+u26@u26-VirtualBox:/$ ls -l\
+> 
+итого 2744400
+lrwxrwxrwx   1 root root          7 фев  6 13:16 bin -> usr/bin
+drwxr-xr-x   4 root root       4096 мая 16 10:32 boot
+drwxrwxr-x   2 root root       4096 фев  6 13:20 cdrom
+drwxr-xr-x  19 root root       4360 мая 16 10:29 dev
+drwxr-xr-x 132 root root      12288 мая 16 10:42 etc
+drwxr-xr-x   3 root root       4096 фев  6 13:22 home
+lrwxrwxrwx   1 root root          7 фев  6 13:16 lib -> usr/lib
+lrwxrwxrwx   1 root root          9 фев  6 13:16 lib32 -> usr/lib32
+lrwxrwxrwx   1 root root          9 фев  6 13:16 lib64 -> usr/lib64
+lrwxrwxrwx   1 root root         10 фев  6 13:16 libx32 -> usr/libx32
+drwx------   2 root root      16384 фев  6 13:16 lost+found
+drwxr-xr-x   2 root root       4096 авг  8  2023 media
+drwxr-xr-x  10 root root       4096 мая 16 11:25 mnt
+drwxr-xr-x   3 root root       4096 мар 21 12:04 opt
+dr-xr-xr-x 272 root root          0 мая 16 09:04 proc
+drwx------   6 root root       4096 мая 16 11:49 root
+drwxr-xr-x  37 root root       1000 мая 16 10:44 run
+lrwxrwxrwx   1 root root          8 фев  6 13:16 sbin -> usr/sbin
+drwxr-xr-x  13 root root       4096 авг  8  2023 snap
+drwxr-xr-x   2 root root       4096 авг  8  2023 srv
+-rw-------   1 root root 2810183680 фев  6 13:16 swapfile
+dr-xr-xr-x  13 root root          0 мая 16 09:04 sys
+drwxrwxrwt  19 root root       4096 мая 16 12:12 tmp
+drwxr-xr-x  14 root root       4096 авг  8  2023 usr
+drwxr-xr-x  14 root root       4096 авг  8  2023 var
+
+
