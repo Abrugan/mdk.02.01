@@ -106,3 +106,861 @@ u26@u26-VirtualBox:/mnt/ext4$ cd ..
 u26@u26-VirtualBox:/mnt$ cd xfs
 u26@u26-VirtualBox:/mnt/xfs$ sudo vim /etc/fstab
 u26@u26-VirtualBox:/mnt/xfs$ sudo vim /etc/fstab
+u26@u26-VirtualBox:~$ cd /mnt
+u26@u26-VirtualBox:/mnt$ cd /dtrfs
+bash: cd: /dtrfs: Нет такого файла или каталога
+u26@u26-VirtualBox:/mnt$ cd /btrfs
+bash: cd: /btrfs: Нет такого файла или каталога
+u26@u26-VirtualBox:/mnt$ cd /ext2
+bash: cd: /ext2: Нет такого файла или каталога
+u26@u26-VirtualBox:/mnt$ cd /sdc1
+bash: cd: /sdc1: Нет такого файла или каталога
+u26@u26-VirtualBox:/mnt$ ls -l
+итого 40
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:25 btrfs
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:24 btrfs2
+drwxr-xr-x 1 u26  u26     0 мая 16 10:34 dtrfs
+drwxr-xr-x 2 root root 4096 мая 16 11:23 dtrfs2
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:23 ext2
+drwxr-xr-x 3 u26  u26  4096 мая 16 12:05 ext4
+drwxr-xr-x 2 root root    6 мая 22 08:07 xfs
+drwxr-xr-x 2 u26  u26  4096 мая 16 11:23 xfs2
+u26@u26-VirtualBox:/mnt$ sudo lsblk -f
+[sudo] пароль для u26: 
+NAME   FSTYPE   FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+loop0  squashfs 4.0                                                    0   100% /snap/core20/2501
+loop1  squashfs 4.0                                                    0   100% /snap/bare/5
+loop2  squashfs 4.0                                                    0   100% /snap/core20/2571
+loop3  squashfs 4.0                                                    0   100% /snap/core22/1908
+loop4  squashfs 4.0                                                    0   100% /snap/core22/1963
+loop5  squashfs 4.0                                                    0   100% /snap/firefox/6103
+loop6  squashfs 4.0                                                    0   100% /snap/firefox/6198
+loop7  squashfs 4.0                                                    0   100% /snap/gnome-3-38-2004/143
+loop8  squashfs 4.0                                                    0   100% /snap/gnome-42-2204/120
+loop9  squashfs 4.0                                                    0   100% /snap/gnome-42-2204/202
+loop10 squashfs 4.0                                                    0   100% /snap/gtk-common-themes/1535
+loop11 squashfs 4.0                                                    0   100% /snap/snap-store/959
+loop12 squashfs 4.0                                                    0   100% /snap/snapd/23771
+loop13 squashfs 4.0                                                    0   100% /snap/snap-store/1216
+loop14 squashfs 4.0                                                    0   100% /snap/snapd/24505
+loop15 squashfs 4.0                                                    0   100% /snap/snapd-desktop-integration/253
+loop16 squashfs 4.0                                                    0   100% /snap/snapd-desktop-integration/83
+sda                                                                             
+├─sda1                                                                          
+├─sda2 vfat     FAT32       FCA3-5CF7                             505,9M     1% /boot/efi
+└─sda3 ext4     1.0         f4023293-1e8d-46c4-97ac-d3486dc2cc66    1,1G    90% /var/snap/firefox/common/host-hunspell
+                                                                                /
+sdb                                                                             
+├─sdb1 ext4     1.0         9e649f6d-4952-462f-8a42-e310a8ed5194    1,8G     0% /mnt/ext4
+└─sdb2 xfs                  990e1d15-055b-48ac-b058-fedb5c75507d    2,9G     2% /mnt/xfs
+sdc                                                                             
+├─sdc1 btrfs                8f73044a-33df-429f-bec8-0f9fff29d508    1,8G     0% /mnt/dtrfs
+└─sdc2 ext2     1.0         dd03368e-9876-4564-a409-7f0cfaeac551                
+u26@u26-VirtualBox:/mnt$ sudo gdisk /dev/sdc2
+GPT fdisk (gdisk) version 1.0.8
+
+Partition table scan:
+  MBR: not present
+  BSD: not present
+  APM: not present
+  GPT: not present
+
+Creating new GPT entries in memory.
+
+Command (? for help): q
+u26@u26-VirtualBox:/mnt$ sudo gdisk /dev/sdc
+GPT fdisk (gdisk) version 1.0.8
+
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: present
+
+Found valid GPT with protective MBR; using GPT.
+
+Command (? for help): d
+Partition number (1-2): 2
+
+Command (? for help): n
+Partition number (2-128, default 2): 
+First sector (34-10485726, default = 4196352) or {+-}size{KMGTP}: 
+Last sector (4196352-10485726, default = 10485726) or {+-}size{KMGTP}: 
+Current type is 8300 (Linux filesystem)
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): w
+
+Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
+
+Do you want to proceed? (Y/N): y
+OK; writing new GUID partition table (GPT) to /dev/sdc.
+Warning: The kernel is still using the old partition table.
+The new table will be used at the next reboot or after you
+run partprobe(8) or kpartx(8)
+The operation has completed successfully.
+u26@u26-VirtualBox:/mnt$ sudo lsblk -f
+NAME FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+loop0
+     squash 4.0                                                    0   100% /snap/core20/2501
+loop1
+     squash 4.0                                                    0   100% /snap/bare/5
+loop2
+     squash 4.0                                                    0   100% /snap/core20/2571
+loop3
+     squash 4.0                                                    0   100% /snap/core22/1908
+loop4
+     squash 4.0                                                    0   100% /snap/core22/1963
+loop5
+     squash 4.0                                                    0   100% /snap/firefox/6103
+loop6
+     squash 4.0                                                    0   100% /snap/firefox/6198
+loop7
+     squash 4.0                                                    0   100% /snap/gnome-3-38-2004/143
+loop8
+     squash 4.0                                                    0   100% /snap/gnome-42-2204/120
+loop9
+     squash 4.0                                                    0   100% /snap/gnome-42-2204/202
+loop10
+     squash 4.0                                                    0   100% /snap/gtk-common-themes/1535
+loop11
+     squash 4.0                                                    0   100% /snap/snap-store/959
+loop12
+     squash 4.0                                                    0   100% /snap/snapd/23771
+loop13
+     squash 4.0                                                    0   100% /snap/snap-store/1216
+loop14
+     squash 4.0                                                    0   100% /snap/snapd/24505
+loop15
+     squash 4.0                                                    0   100% /snap/snapd-desktop-integration/253
+loop16
+     squash 4.0                                                    0   100% /snap/snapd-desktop-integration/83
+sda                                                                         
+├─sda1
+│                                                                           
+├─sda2
+│    vfat   FAT32       FCA3-5CF7                             505,9M     1% /boot/efi
+└─sda3
+     ext4   1.0         f4023293-1e8d-46c4-97ac-d3486dc2cc66    1,1G    90% /var/snap/firefox/common/host-hunspell
+                                                                            /
+sdb                                                                         
+├─sdb1
+│    ext4   1.0         9e649f6d-4952-462f-8a42-e310a8ed5194    1,8G     0% /mnt/ext4
+└─sdb2
+     xfs                990e1d15-055b-48ac-b058-fedb5c75507d    2,9G     2% /mnt/xfs
+sdc                                                                         
+├─sdc1
+│    btrfs              8f73044a-33df-429f-bec8-0f9fff29d508    1,8G     0% /mnt/dtrfs
+└─sdc2
+     ext2   1.0         dd03368e-9876-4564-a409-7f0cfaeac551                
+u26@u26-VirtualBox:/mnt$ df /dev/sdc2
+Файл.система   1K-блоков Использовано Доступно Использовано% Cмонтировано в
+udev              967876            0   967876            0% /dev
+u26@u26-VirtualBox:/mnt$ df -h /dev/sdc2
+Файл.система   Размер Использовано  Дост Использовано% Cмонтировано в
+udev             946M            0  946M            0% /dev
+u26@u26-VirtualBox:/mnt$ sudo mkfs.ext2 /dev/sdc2
+mke2fs 1.46.5 (30-Dec-2021)
+/dev/sdc2 contains a ext2 file system
+	last mounted on Fri May 16 11:48:28 2025
+Proceed anyway? (y,N) y
+Creating filesystem with 786171 4k blocks and 196608 inodes
+Filesystem UUID: e3b42644-d320-44d4-b6e8-a7278dc42704
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376, 294912
+
+Allocating group tables: done                            
+Сохранение таблицы inod'ов: done                            
+Writing superblocks and filesystem accounting information: готово
+
+u26@u26-VirtualBox:/mnt$ df /dev/sdc2
+Файл.система   1K-блоков Использовано Доступно Использовано% Cмонтировано в
+udev              967876            0   967876            0% /dev
+u26@u26-VirtualBox:/mnt$ sudo lsblk -f
+NAME FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+loop0
+     squash 4.0                                                    0   100% /snap/core20/2501
+loop1
+     squash 4.0                                                    0   100% /snap/bare/5
+loop2
+     squash 4.0                                                    0   100% /snap/core20/2571
+loop3
+     squash 4.0                                                    0   100% /snap/core22/1908
+loop4
+     squash 4.0                                                    0   100% /snap/core22/1963
+loop5
+     squash 4.0                                                    0   100% /snap/firefox/6103
+loop6
+     squash 4.0                                                    0   100% /snap/firefox/6198
+loop7
+     squash 4.0                                                    0   100% /snap/gnome-3-38-2004/143
+loop8
+     squash 4.0                                                    0   100% /snap/gnome-42-2204/120
+loop9
+     squash 4.0                                                    0   100% /snap/gnome-42-2204/202
+loop10
+     squash 4.0                                                    0   100% /snap/gtk-common-themes/1535
+loop11
+     squash 4.0                                                    0   100% /snap/snap-store/959
+loop12
+     squash 4.0                                                    0   100% /snap/snapd/23771
+loop13
+     squash 4.0                                                    0   100% /snap/snap-store/1216
+loop14
+     squash 4.0                                                    0   100% /snap/snapd/24505
+loop15
+     squash 4.0                                                    0   100% /snap/snapd-desktop-integration/253
+loop16
+     squash 4.0                                                    0   100% /snap/snapd-desktop-integration/83
+sda                                                                         
+├─sda1
+│                                                                           
+├─sda2
+│    vfat   FAT32       FCA3-5CF7                             505,9M     1% /boot/efi
+└─sda3
+     ext4   1.0         f4023293-1e8d-46c4-97ac-d3486dc2cc66    1,1G    90% /var/snap/firefox/common/host-hunspell
+                                                                            /
+sdb                                                                         
+├─sdb1
+│    ext4   1.0         9e649f6d-4952-462f-8a42-e310a8ed5194    1,8G     0% /mnt/ext4
+└─sdb2
+     xfs                990e1d15-055b-48ac-b058-fedb5c75507d    2,9G     2% /mnt/xfs
+sdc                                                                         
+├─sdc1
+│    btrfs              8f73044a-33df-429f-bec8-0f9fff29d508    1,8G     0% /mnt/dtrfs
+└─sdc2
+     ext2   1.0         e3b42644-d320-44d4-b6e8-a7278dc42704                
+u26@u26-VirtualBox:/mnt$ sudo mount /dev/sdc2 /mnt/ext2
+u26@u26-VirtualBox:/mnt$ ls /dev/sdc2
+/dev/sdc2
+u26@u26-VirtualBox:/mnt$ ls /mnt/ext2
+lost+found
+u26@u26-VirtualBox:/mnt$ cd /mnt/dtrfs
+u26@u26-VirtualBox:/mnt/dtrfs$ ls -l;
+итого 0
+u26@u26-VirtualBox:/mnt/dtrfs$ ls -l
+итого 0
+u26@u26-VirtualBox:/mnt/dtrfs$ sudo vim /etc/fstab
+u26@u26-VirtualBox:/mnt/dtrfs$ cd ..
+u26@u26-VirtualBox:/mnt$ cd /mnt/btrfs
+u26@u26-VirtualBox:/mnt/btrfs$ cd ..
+u26@u26-VirtualBox:/mnt$ cd ext2
+u26@u26-VirtualBox:/mnt/ext2$ sudo maunt -af
+sudo: maunt: команда не найдена
+u26@u26-VirtualBox:/mnt/ext2$ sudo maunt -a
+sudo: maunt: команда не найдена
+u26@u26-VirtualBox:/mnt/ext2$ sudo mount -af
+mount: /mnt/ext2: не удалось найти UUID=dd033683-9876-4564-a409-7f0cfaeac551.
+u26@u26-VirtualBox:/mnt/ext2$ sudo lsblk -f
+NAME   FSTYPE   FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+loop0  squashfs 4.0                                                    0   100% /snap/core20/2501
+loop1  squashfs 4.0                                                    0   100% /snap/bare/5
+loop2  squashfs 4.0                                                    0   100% /snap/core20/2571
+loop3  squashfs 4.0                                                    0   100% /snap/core22/1908
+loop4  squashfs 4.0                                                    0   100% /snap/core22/1963
+loop5  squashfs 4.0                                                    0   100% /snap/firefox/6103
+loop6  squashfs 4.0                                                    0   100% /snap/firefox/6198
+loop7  squashfs 4.0                                                    0   100% /snap/gnome-3-38-2004/143
+loop8  squashfs 4.0                                                    0   100% /snap/gnome-42-2204/120
+loop9  squashfs 4.0                                                    0   100% /snap/gnome-42-2204/202
+loop10 squashfs 4.0                                                    0   100% /snap/gtk-common-themes/1535
+loop11 squashfs 4.0                                                    0   100% /snap/snap-store/959
+loop12 squashfs 4.0                                                    0   100% /snap/snapd/23771
+loop13 squashfs 4.0                                                    0   100% /snap/snap-store/1216
+loop14 squashfs 4.0                                                    0   100% /snap/snapd/24505
+loop15 squashfs 4.0                                                    0   100% /snap/snapd-desktop-integration/253
+loop16 squashfs 4.0                                                    0   100% /snap/snapd-desktop-integration/83
+sda                                                                             
+├─sda1                                                                          
+├─sda2 vfat     FAT32       FCA3-5CF7                             505,9M     1% /boot/efi
+└─sda3 ext4     1.0         f4023293-1e8d-46c4-97ac-d3486dc2cc66    1,1G    90% /var/snap/firefox/common/host-hunspell
+                                                                                /
+sdb                                                                             
+├─sdb1 ext4     1.0         9e649f6d-4952-462f-8a42-e310a8ed5194    1,8G     0% /mnt/ext4
+└─sdb2 xfs                  990e1d15-055b-48ac-b058-fedb5c75507d    2,9G     2% /mnt/xfs
+sdc                                                                             
+├─sdc1 btrfs                8f73044a-33df-429f-bec8-0f9fff29d508    1,8G     0% /mnt/dtrfs
+└─sdc2 ext2     1.0         e3b42644-d320-44d4-b6e8-a7278dc42704    2,8G     0% /mnt/ext2
+u26@u26-VirtualBox:/mnt/ext2$ sudo vim /etc/fstab
+u26@u26-VirtualBox:/mnt/ext2$ sudo mount -af
+u26@u26-VirtualBox:/mnt/ext2$ sudo mount -af
+u26@u26-VirtualBox:/mnt/ext2$ sudo mount -a
+u26@u26-VirtualBox:/mnt/ext2$ cd ..
+u26@u26-VirtualBox:/mnt$ cd btrfs
+u26@u26-VirtualBox:/mnt/btrfs$ sudo vim /etc/fstab
+u26@u26-VirtualBox:/mnt/btrfs$ sudo mount -af
+u26@u26-VirtualBox:/mnt/btrfs$ sudo mount -a
+u26@u26-VirtualBox:/mnt/btrfs$ sudo lsblk -f
+NAME   FSTYPE   FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+loop0  squashfs 4.0                                                    0   100% /snap/core20/2501
+loop1  squashfs 4.0                                                    0   100% /snap/bare/5
+loop2  squashfs 4.0                                                    0   100% /snap/core20/2571
+loop3  squashfs 4.0                                                    0   100% /snap/core22/1908
+loop4  squashfs 4.0                                                    0   100% /snap/core22/1963
+loop5  squashfs 4.0                                                    0   100% /snap/firefox/6103
+loop6  squashfs 4.0                                                    0   100% /snap/firefox/6198
+loop7  squashfs 4.0                                                    0   100% /snap/gnome-3-38-2004/143
+loop8  squashfs 4.0                                                    0   100% /snap/gnome-42-2204/120
+loop9  squashfs 4.0                                                    0   100% /snap/gnome-42-2204/202
+loop10 squashfs 4.0                                                    0   100% /snap/gtk-common-themes/1535
+loop11 squashfs 4.0                                                    0   100% /snap/snap-store/959
+loop12 squashfs 4.0                                                    0   100% /snap/snapd/23771
+loop13 squashfs 4.0                                                    0   100% /snap/snap-store/1216
+loop14 squashfs 4.0                                                    0   100% /snap/snapd/24505
+loop15 squashfs 4.0                                                    0   100% /snap/snapd-desktop-integration/253
+loop16 squashfs 4.0                                                    0   100% /snap/snapd-desktop-integration/83
+sda                                                                             
+├─sda1                                                                          
+├─sda2 vfat     FAT32       FCA3-5CF7                             505,9M     1% /boot/efi
+└─sda3 ext4     1.0         f4023293-1e8d-46c4-97ac-d3486dc2cc66    1,1G    90% /var/snap/firefox/common/host-hunspell
+                                                                                /
+sdb                                                                             
+├─sdb1 ext4     1.0         9e649f6d-4952-462f-8a42-e310a8ed5194    1,8G     0% /mnt/ext4
+└─sdb2 xfs                  990e1d15-055b-48ac-b058-fedb5c75507d    2,9G     2% /mnt/xfs
+sdc                                                                             
+├─sdc1 btrfs                8f73044a-33df-429f-bec8-0f9fff29d508    1,8G     0% /mnt/btrfs
+│                                                                               /mnt/dtrfs
+└─sdc2 ext2     1.0         e3b42644-d320-44d4-b6e8-a7278dc42704    2,8G     0% /mnt/ext2
+u26@u26-VirtualBox:/mnt/btrfs$ cd ..
+u26@u26-VirtualBox:/mnt$ cd ext4
+
+_________________________________________________________________________ монтаж дискоф________________________________________________________________
+
+u26@u26-VirtualBox:/mnt/ext4$ debugfs -w /dev/sdc1
+debugfs 1.46.5 (30-Dec-2021)
+debugfs: Permission denied while trying to open /dev/sdc1
+debugfs:  help
+Available debugfs requests:
+
+show_debugfs_params, params
+                         Show debugfs parameters
+open_filesys, open       Open a filesystem
+close_filesys, close     Close the filesystem
+freefrag, e2freefrag     Report free space fragmentation
+feature, features        Set/print superblock features
+dirty_filesys, dirty     Mark the filesystem as dirty
+init_filesys             Initialize a filesystem (DESTROYS DATA)
+show_super_stats, stats  Show superblock statistics
+ncheck                   Do inode->name translation
+icheck                   Do block->inode translation
+change_root_directory, chroot
+                         Change root directory
+change_working_directory, cd
+                         Change working directory
+list_directory, ls       List directory
+show_inode_info, stat    Show inode information 
+dump_extents, extents, ex
+                         Dump extents information 
+blocks                   Dump blocks used by an inode 
+filefrag                 Report fragmentation information for an inode
+link, ln                 Create directory link
+unlink                   Delete a directory link
+mkdir                    Create a directory
+rmdir                    Remove a directory
+rm                       Remove a file (unlink and kill_file, if appropriate)
+kill_file                Deallocate an inode and its blocks
+copy_inode               Copy the inode structure
+clri                     Clear an inode's contents
+freei                    Clear an inode's in-use flag
+seti                     Set an inode's in-use flag
+testi                    Test an inode's in-use flag
+freeb                    Clear a block's in-use flag
+setb                     Set a block's in-use flag
+testb                    Test a block's in-use flag
+modify_inode, mi         Modify an inode by structure
+find_free_block, ffb     Find free block(s)
+
+debugfs:  ls
+debugfs:  rm test.txt
+
+debugfs:  ls
+debugfs:  lsdel
+debugfs:  undel <12> text.txt
+<12>: Inode is not marked as deleted
+
+u26@u26-VirtualBox:/mnt/ext4$ sudo dumpe2fs /dev/sdb1 | grep features
+[sudo] пароль для u26: 
+dumpe2fs 1.46.5 (30-Dec-2021)
+Filesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum
+Journal features:         journal_64bit journal_checksum_v3
+u26@u26-VirtualBox:/mnt/ext4$ sudo dumpe2fs /dev/sdb1
+dumpe2fs 1.46.5 (30-Dec-2021)
+Filesystem volume name:   <none>
+Last mounted on:          /mnt/ext4
+Filesystem UUID:          9e649f6d-4952-462f-8a42-e310a8ed5194
+Filesystem magic number:  0xEF53
+Filesystem revision #:    1 (dynamic)
+Filesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum
+Filesystem flags:         signed_directory_hash 
+Default mount options:    user_xattr acl
+Filesystem state:         clean
+Errors behavior:          Continue
+Filesystem OS type:       Linux
+Inode count:              131072
+Block count:              524288
+Reserved block count:     26214
+Overhead clusters:        26150
+Free blocks:              498131
+Free inodes:              131059
+First block:              0
+Block size:               4096
+Fragment size:            4096
+Group descriptor size:    64
+Reserved GDT blocks:      255
+Blocks per group:         32768
+Fragments per group:      32768
+Inodes per group:         8192
+Inode blocks per group:   512
+Flex block group size:    16
+Filesystem created:       Fri May 16 10:16:44 2025
+Last mount time:          Thu May 22 10:21:14 2025
+Last write time:          Thu May 22 10:21:14 2025
+Mount count:              3
+Maximum mount count:      -1
+Last checked:             Fri May 16 10:16:44 2025
+Check interval:           0 (<none>)
+Lifetime writes:          1085 kB
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+First inode:              11
+Inode size:	          256
+Required extra isize:     32
+Desired extra isize:      32
+Journal inode:            8
+Default directory hash:   half_md4
+Directory Hash Seed:      b948f6c0-fa62-499c-b0c2-ea9d26bd8efd
+Journal backup:           inode blocks
+Checksum type:            crc32c
+Checksum:                 0x8eda0775
+Journal features:         journal_64bit journal_checksum_v3
+Total journal size:       64M
+Total journal blocks:     16384
+Max transaction length:   16384
+Fast commit length:       0
+Journal sequence:         0x00000013
+Journal start:            0
+Journal checksum type:    crc32c
+Journal checksum:         0x89a4c7dc
+
+
+Group 0: (Blocks 0-32767) csum 0xbb5f [ITABLE_ZEROED]
+  Primary superblock at 0, Group descriptors at 1-1
+  Reserved GDT blocks at 2-256
+  Block bitmap at 257 (+257), csum 0xd0a3e924
+  Inode bitmap at 273 (+273), csum 0x317c0897
+  Inode table at 289-800 (+289)
+  24281 free blocks, 8179 free inodes, 2 directories, 8179 unused inodes
+  Free blocks: 8487-32767
+  Свободные inod'ы: 14-8192
+Group 1: (Blocks 32768-65535) csum 0xbe27 [INODE_UNINIT, ITABLE_ZEROED]
+  Backup superblock at 32768, Group descriptors at 32769-32769
+  Reserved GDT blocks at 32770-33024
+  Block bitmap at 258 (bg #0 + 258), csum 0x1ee3c500
+  Inode bitmap at 274 (bg #0 + 274), csum 0x00000000
+  Inode table at 801-1312 (bg #0 + 801)
+  32510 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 33025-33279, 33281-65535
+  Свободные inod'ы: 8193-16384
+Group 2: (Blocks 65536-98303) csum 0x68c4 [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Block bitmap at 259 (bg #0 + 259), csum 0x00000000
+  Inode bitmap at 275 (bg #0 + 275), csum 0x00000000
+  Inode table at 1313-1824 (bg #0 + 1313)
+  32768 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 65536-98303
+  Свободные inod'ы: 16385-24576
+Group 3: (Blocks 98304-131071) csum 0xf61e [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Backup superblock at 98304, Group descriptors at 98305-98305
+  Reserved GDT blocks at 98306-98560
+  Block bitmap at 260 (bg #0 + 260), csum 0x00000000
+  Inode bitmap at 276 (bg #0 + 276), csum 0x00000000
+  Inode table at 1825-2336 (bg #0 + 1825)
+  32511 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 98561-131071
+  Свободные inod'ы: 24577-32768
+Group 4: (Blocks 131072-163839) csum 0xb72d [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Block bitmap at 261 (bg #0 + 261), csum 0x00000000
+  Inode bitmap at 277 (bg #0 + 277), csum 0x00000000
+  Inode table at 2337-2848 (bg #0 + 2337)
+  32768 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 131072-163839
+  Свободные inod'ы: 32769-40960
+Group 5: (Blocks 163840-196607) csum 0x0493 [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Backup superblock at 163840, Group descriptors at 163841-163841
+  Reserved GDT blocks at 163842-164096
+  Block bitmap at 262 (bg #0 + 262), csum 0x00000000
+  Inode bitmap at 278 (bg #0 + 278), csum 0x00000000
+  Inode table at 2849-3360 (bg #0 + 2849)
+  32511 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 164097-196607
+  Свободные inod'ы: 40961-49152
+Group 6: (Blocks 196608-229375) csum 0xfd8a [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Block bitmap at 263 (bg #0 + 263), csum 0x00000000
+  Inode bitmap at 279 (bg #0 + 279), csum 0x00000000
+  Inode table at 3361-3872 (bg #0 + 3361)
+  32768 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 196608-229375
+  Свободные inod'ы: 49153-57344
+Group 7: (Blocks 229376-262143) csum 0x3998 [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Backup superblock at 229376, Group descriptors at 229377-229377
+  Reserved GDT blocks at 229378-229632
+  Block bitmap at 264 (bg #0 + 264), csum 0x00000000
+  Inode bitmap at 280 (bg #0 + 280), csum 0x00000000
+  Inode table at 3873-4384 (bg #0 + 3873)
+  32511 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 229633-262143
+  Свободные inod'ы: 57345-65536
+Group 8: (Blocks 262144-294911) csum 0xcee3 [INODE_UNINIT, ITABLE_ZEROED]
+  Block bitmap at 265 (bg #0 + 265), csum 0x93d256a4
+  Inode bitmap at 281 (bg #0 + 281), csum 0x00000000
+  Inode table at 4385-4896 (bg #0 + 4385)
+  16384 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 278528-294911
+  Свободные inod'ы: 65537-73728
+Group 9: (Blocks 294912-327679) csum 0xcdb0 [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Backup superblock at 294912, Group descriptors at 294913-294913
+  Reserved GDT blocks at 294914-295168
+  Block bitmap at 266 (bg #0 + 266), csum 0x00000000
+  Inode bitmap at 282 (bg #0 + 282), csum 0x00000000
+  Inode table at 4897-5408 (bg #0 + 4897)
+  32511 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 295169-327679
+  Свободные inod'ы: 73729-81920
+Group 10: (Blocks 327680-360447) csum 0x34a9 [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Block bitmap at 267 (bg #0 + 267), csum 0x00000000
+  Inode bitmap at 283 (bg #0 + 283), csum 0x00000000
+  Inode table at 5409-5920 (bg #0 + 5409)
+  32768 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 327680-360447
+  Свободные inod'ы: 81921-90112
+Group 11: (Blocks 360448-393215) csum 0x9154 [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Block bitmap at 268 (bg #0 + 268), csum 0x00000000
+  Inode bitmap at 284 (bg #0 + 284), csum 0x00000000
+  Inode table at 5921-6432 (bg #0 + 5921)
+  32768 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 360448-393215
+  Свободные inod'ы: 90113-98304
+Group 12: (Blocks 393216-425983) csum 0xeb40 [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Block bitmap at 269 (bg #0 + 269), csum 0x00000000
+  Inode bitmap at 285 (bg #0 + 285), csum 0x00000000
+  Inode table at 6433-6944 (bg #0 + 6433)
+  32768 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 393216-425983
+  Свободные inod'ы: 98305-106496
+Group 13: (Blocks 425984-458751) csum 0x63d9 [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Block bitmap at 270 (bg #0 + 270), csum 0x00000000
+  Inode bitmap at 286 (bg #0 + 286), csum 0x00000000
+  Inode table at 6945-7456 (bg #0 + 6945)
+  32768 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 425984-458751
+  Свободные inod'ы: 106497-114688
+Group 14: (Blocks 458752-491519) csum 0xa1e7 [INODE_UNINIT, BLOCK_UNINIT, ITABLE_ZEROED]
+  Block bitmap at 271 (bg #0 + 271), csum 0x00000000
+  Inode bitmap at 287 (bg #0 + 287), csum 0x00000000
+  Inode table at 7457-7968 (bg #0 + 7457)
+  32768 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 458752-491519
+  Свободные inod'ы: 114689-122880
+Group 15: (Blocks 491520-524287) csum 0x1aab [INODE_UNINIT, ITABLE_ZEROED]
+  Block bitmap at 272 (bg #0 + 272), csum 0x7c2531bd
+  Inode bitmap at 288 (bg #0 + 288), csum 0x00000000
+  Inode table at 7969-8480 (bg #0 + 7969)
+  32768 free blocks, 8192 free inodes, 0 directories, 8192 unused inodes
+  Free blocks: 491520-524287
+  Свободные inod'ы: 122881-131072
+u26@u26-VirtualBox:/mnt/ext4$ sudo dumpe2fs /dev/sdb1 | grep features
+dumpe2fs 1.46.5 (30-Dec-2021)
+Filesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum
+Journal features:         journal_64bit journal_checksum_v3
+u26@u26-VirtualBox:/mnt/ext4$ cd ../ext2
+u26@u26-VirtualBox:/mnt/ext2$ dumpe2fs /dev/sdc2 
+dumpe2fs 1.46.5 (30-Dec-2021)
+dumpe2fs: Отказано в доступе при попытке открыть /dev/sdc2
+Couldn't find valid filesystem superblock.
+u26@u26-VirtualBox:/mnt/ext2$ sudo dumpe2fs /dev/sdc2 
+dumpe2fs 1.46.5 (30-Dec-2021)
+Filesystem volume name:   <none>
+Last mounted on:          <not available>
+Filesystem UUID:          e3b42644-d320-44d4-b6e8-a7278dc42704
+Filesystem magic number:  0xEF53
+Filesystem revision #:    1 (dynamic)
+Filesystem features:      ext_attr resize_inode dir_index filetype sparse_super large_file
+Filesystem flags:         signed_directory_hash 
+Default mount options:    user_xattr acl
+Filesystem state:         not clean
+Errors behavior:          Continue
+Filesystem OS type:       Linux
+Inode count:              196608
+Block count:              786171
+Reserved block count:     39308
+Overhead clusters:        13494
+Free blocks:              772671
+Free inodes:              196597
+First block:              0
+Block size:               4096
+Fragment size:            4096
+Reserved GDT blocks:      191
+Blocks per group:         32768
+Fragments per group:      32768
+Inodes per group:         8192
+Inode blocks per group:   512
+Filesystem created:       Thu May 22 11:00:26 2025
+Last mount time:          Thu May 22 11:01:17 2025
+Last write time:          Thu May 22 11:01:17 2025
+Mount count:              1
+Maximum mount count:      -1
+Last checked:             Thu May 22 11:00:26 2025
+Check interval:           0 (<none>)
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+First inode:              11
+Inode size:	          256
+Required extra isize:     32
+Desired extra isize:      32
+Default directory hash:   half_md4
+Directory Hash Seed:      02b537ed-d98e-4c0a-84c5-e6ef4d502a38
+
+
+Group 0: (Blocks 0-32767)
+  Primary superblock at 0, Group descriptors at 1-1
+  Reserved GDT blocks at 2-192
+  Block bitmap at 193 (+193)
+  Inode bitmap at 194 (+194)
+  Inode table at 195-706 (+195)
+  32055 free blocks, 8181 free inodes, 2 directories
+  Free blocks: 713-32767
+  Свободные inod'ы: 12-8192
+Group 1: (Blocks 32768-65535)
+  Backup superblock at 32768, Group descriptors at 32769-32769
+  Reserved GDT blocks at 32770-32960
+  Block bitmap at 32961 (+193)
+  Inode bitmap at 32962 (+194)
+  Inode table at 32963-33474 (+195)
+  32061 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 33475-65535
+  Свободные inod'ы: 8193-16384
+Group 2: (Blocks 65536-98303)
+  Block bitmap at 65536 (+0)
+  Inode bitmap at 65537 (+1)
+  Inode table at 65538-66049 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 66050-98303
+  Свободные inod'ы: 16385-24576
+Group 3: (Blocks 98304-131071)
+  Backup superblock at 98304, Group descriptors at 98305-98305
+  Reserved GDT blocks at 98306-98496
+  Block bitmap at 98497 (+193)
+  Inode bitmap at 98498 (+194)
+  Inode table at 98499-99010 (+195)
+  32061 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 99011-131071
+  Свободные inod'ы: 24577-32768
+Group 4: (Blocks 131072-163839)
+  Block bitmap at 131072 (+0)
+  Inode bitmap at 131073 (+1)
+  Inode table at 131074-131585 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 131586-163839
+  Свободные inod'ы: 32769-40960
+Group 5: (Blocks 163840-196607)
+  Backup superblock at 163840, Group descriptors at 163841-163841
+  Reserved GDT blocks at 163842-164032
+  Block bitmap at 164033 (+193)
+  Inode bitmap at 164034 (+194)
+  Inode table at 164035-164546 (+195)
+  32061 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 164547-196607
+  Свободные inod'ы: 40961-49152
+Group 6: (Blocks 196608-229375)
+  Block bitmap at 196608 (+0)
+  Inode bitmap at 196609 (+1)
+  Inode table at 196610-197121 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 197122-229375
+  Свободные inod'ы: 49153-57344
+Group 7: (Blocks 229376-262143)
+  Backup superblock at 229376, Group descriptors at 229377-229377
+  Reserved GDT blocks at 229378-229568
+  Block bitmap at 229569 (+193)
+  Inode bitmap at 229570 (+194)
+  Inode table at 229571-230082 (+195)
+  32061 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 230083-262143
+  Свободные inod'ы: 57345-65536
+Group 8: (Blocks 262144-294911)
+  Block bitmap at 262144 (+0)
+  Inode bitmap at 262145 (+1)
+  Inode table at 262146-262657 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 262658-294911
+  Свободные inod'ы: 65537-73728
+Group 9: (Blocks 294912-327679)
+  Backup superblock at 294912, Group descriptors at 294913-294913
+  Reserved GDT blocks at 294914-295104
+  Block bitmap at 295105 (+193)
+  Inode bitmap at 295106 (+194)
+  Inode table at 295107-295618 (+195)
+  32061 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 295619-327679
+  Свободные inod'ы: 73729-81920
+Group 10: (Blocks 327680-360447)
+  Block bitmap at 327680 (+0)
+  Inode bitmap at 327681 (+1)
+  Inode table at 327682-328193 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 328194-360447
+  Свободные inod'ы: 81921-90112
+Group 11: (Blocks 360448-393215)
+  Block bitmap at 360448 (+0)
+  Inode bitmap at 360449 (+1)
+  Inode table at 360450-360961 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 360962-393215
+  Свободные inod'ы: 90113-98304
+Group 12: (Blocks 393216-425983)
+  Block bitmap at 393216 (+0)
+  Inode bitmap at 393217 (+1)
+  Inode table at 393218-393729 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 393730-425983
+  Свободные inod'ы: 98305-106496
+Group 13: (Blocks 425984-458751)
+  Block bitmap at 425984 (+0)
+  Inode bitmap at 425985 (+1)
+  Inode table at 425986-426497 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 426498-458751
+  Свободные inod'ы: 106497-114688
+Group 14: (Blocks 458752-491519)
+  Block bitmap at 458752 (+0)
+  Inode bitmap at 458753 (+1)
+  Inode table at 458754-459265 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 459266-491519
+  Свободные inod'ы: 114689-122880
+Group 15: (Blocks 491520-524287)
+  Block bitmap at 491520 (+0)
+  Inode bitmap at 491521 (+1)
+  Inode table at 491522-492033 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 492034-524287
+  Свободные inod'ы: 122881-131072
+Group 16: (Blocks 524288-557055)
+  Block bitmap at 524288 (+0)
+  Inode bitmap at 524289 (+1)
+  Inode table at 524290-524801 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 524802-557055
+  Свободные inod'ы: 131073-139264
+Group 17: (Blocks 557056-589823)
+  Block bitmap at 557056 (+0)
+  Inode bitmap at 557057 (+1)
+  Inode table at 557058-557569 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 557570-589823
+  Свободные inod'ы: 139265-147456
+Group 18: (Blocks 589824-622591)
+  Block bitmap at 589824 (+0)
+  Inode bitmap at 589825 (+1)
+  Inode table at 589826-590337 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 590338-622591
+  Свободные inod'ы: 147457-155648
+Group 19: (Blocks 622592-655359)
+  Block bitmap at 622592 (+0)
+  Inode bitmap at 622593 (+1)
+  Inode table at 622594-623105 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 623106-655359
+  Свободные inod'ы: 155649-163840
+Group 20: (Blocks 655360-688127)
+  Block bitmap at 655360 (+0)
+  Inode bitmap at 655361 (+1)
+  Inode table at 655362-655873 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 655874-688127
+  Свободные inod'ы: 163841-172032
+Group 21: (Blocks 688128-720895)
+  Block bitmap at 688128 (+0)
+  Inode bitmap at 688129 (+1)
+  Inode table at 688130-688641 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 688642-720895
+  Свободные inod'ы: 172033-180224
+Group 22: (Blocks 720896-753663)
+  Block bitmap at 720896 (+0)
+  Inode bitmap at 720897 (+1)
+  Inode table at 720898-721409 (+2)
+  32254 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 721410-753663
+  Свободные inod'ы: 180225-188416
+Group 23: (Blocks 753664-786170)
+  Block bitmap at 753664 (+0)
+  Inode bitmap at 753665 (+1)
+  Inode table at 753666-754177 (+2)
+  31993 free blocks, 8192 free inodes, 0 directories
+  Free blocks: 754178-786170
+  Свободные inod'ы: 188417-196608
+u26@u26-VirtualBox:/mnt/ext2$ tune2fs -0 has_journal /dev/sdb1
+tune2fs 1.46.5 (30-Dec-2021)
+tune2fs: неверный ключ — «0»
+Usage: tune2fs [-c max_mounts_count] [-e errors_behavior] [-f] [-g group]
+	[-i interval[d|m|w]] [-j] [-J journal_options] [-l]
+	[-m reserved_blocks_percent] [-o [^]mount_options[,...]]
+	[-r reserved_blocks_count] [-u user] [-C mount_count]
+	[-L volume_label] [-M last_mounted_dir]
+	[-O [^]feature[,...]] [-Q quota_options]
+	[-E extended-option[,...]] [-T last_check_time] [-U UUID]
+	[-I new_inode_size] [-z undo_file] device
+
+u26@u26-VirtualBox:/mnt/ext4$ sudo umount /dev/sdb1
+umount: /mnt/ext4: target is busy.
+u26@u26-VirtualBox:/mnt/ext4$ sudo lsblk -f
+NAME   FSTYPE   FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+loop0  squashfs 4.0                                                    0   100% /snap/core20/2501
+loop1  squashfs 4.0                                                    0   100% /snap/bare/5
+loop2  squashfs 4.0                                                    0   100% /snap/core20/2571
+loop3  squashfs 4.0                                                    0   100% /snap/core22/1908
+loop4  squashfs 4.0                                                    0   100% /snap/core22/1963
+loop5  squashfs 4.0                                                    0   100% /snap/firefox/6103
+loop6  squashfs 4.0                                                    0   100% /snap/firefox/6198
+loop7  squashfs 4.0                                                    0   100% /snap/gnome-3-38-2004/143
+loop8  squashfs 4.0                                                    0   100% /snap/gnome-42-2204/120
+loop9  squashfs 4.0                                                    0   100% /snap/gnome-42-2204/202
+loop10 squashfs 4.0                                                    0   100% /snap/gtk-common-themes/1535
+loop11 squashfs 4.0                                                    0   100% /snap/snap-store/959
+loop12 squashfs 4.0                                                    0   100% /snap/snapd/23771
+loop13 squashfs 4.0                                                    0   100% /snap/snap-store/1216
+loop14 squashfs 4.0                                                    0   100% /snap/snapd/24505
+loop15 squashfs 4.0                                                    0   100% /snap/snapd-desktop-integration/253
+loop16 squashfs 4.0                                                    0   100% /snap/snapd-desktop-integration/83
+sda                                                                             
+├─sda1                                                                          
+├─sda2 vfat     FAT32       FCA3-5CF7                             505,9M     1% /boot/efi
+└─sda3 ext4     1.0         f4023293-1e8d-46c4-97ac-d3486dc2cc66    1,1G    90% /var/snap/firefox/common/host-hunspell
+                                                                                /
+sdb                                                                             
+├─sdb1 ext4     1.0         9e649f6d-4952-462f-8a42-e310a8ed5194    1,8G     0% /mnt/ext4
+└─sdb2 xfs                  990e1d15-055b-48ac-b058-fedb5c75507d    2,9G     2% /mnt/xfs
+sdc                                                                             
+├─sdc1 btrfs                8f73044a-33df-429f-bec8-0f9fff29d508    1,8G     0% /mnt/btrfs
+│                                                                               /mnt/dtrfs
+└─sdc2 ext2     1.0         e3b42644-d320-44d4-b6e8-a7278dc42704    2,8G     0% /mnt/ext2
+u26@u26-VirtualBox:/mnt/ext4$ cd ..
+u26@u26-VirtualBox:/mnt$ cd ..
+u26@u26-VirtualBox:/$ sudo xfs_repair -n /dev/sdb1
+xfs_repair: /dev/sdb1 contains a mounted and writable filesystem
+
+критическая ошибка-- невозможно инициализировать XFS библиотеку
+u26@u26-VirtualBox:/$ sudo xfs_check -n /dev/sdb1
+sudo: xfs_check: команда не найдена
+u26@u26-VirtualBox:/$ sudo xfs_check /dev/sdb1
+sudo: xfs_check: команда не найдена
+u26@u26-VirtualBox:/$ bash
+u26@u26-VirtualBox:/$ sudo xfs_repair /dev/sdb1
+xfs_repair: /dev/sdb1 contains a mounted filesystem
+xfs_repair: /dev/sdb1 contains a mounted and writable filesystem
+
+критическая ошибка-- невозможно инициализировать XFS библиотеку
+u26@u26-VirtualBox:/$ 
