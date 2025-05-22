@@ -1,0 +1,108 @@
+u26@u26-VirtualBox:~$ cd /mnt
+u26@u26-VirtualBox:/mnt$ cd ext4
+u26@u26-VirtualBox:/mnt/ext4$ 
+u26@u26-VirtualBox:/mnt/ext4$ ls -l
+итого 0
+u26@u26-VirtualBox:/mnt/ext4$ lsblk
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0    7:0    0  63,8M  1 loop /snap/core20/2501
+loop1    7:1    0     4K  1 loop /snap/bare/5
+loop2    7:2    0  63,8M  1 loop /snap/core20/2571
+loop3    7:3    0  73,9M  1 loop /snap/core22/1908
+loop4    7:4    0  73,9M  1 loop /snap/core22/1963
+loop6    7:6    0 349,7M  1 loop /snap/gnome-3-38-2004/143
+loop7    7:7    0 485,5M  1 loop /snap/gnome-42-2204/120
+loop8    7:8    0   516M  1 loop /snap/gnome-42-2204/202
+loop9    7:9    0  91,7M  1 loop /snap/gtk-common-themes/1535
+loop10   7:10   0 241,5M  1 loop /snap/firefox/6103
+loop11   7:11   0  12,3M  1 loop /snap/snap-store/959
+loop12   7:12   0  50,9M  1 loop /snap/snapd/24505
+loop13   7:13   0  44,4M  1 loop /snap/snapd/23771
+loop14   7:14   0   568K  1 loop /snap/snapd-desktop-integration/253
+loop15   7:15   0   452K  1 loop /snap/snapd-desktop-integration/83
+loop16   7:16   0  12,2M  1 loop /snap/snap-store/1216
+loop17   7:17   0 241,9M  1 loop /snap/firefox/6198
+sda      8:0    0    25G  0 disk 
+├─sda1   8:1    0     1M  0 part 
+├─sda2   8:2    0   513M  0 part /boot/efi
+└─sda3   8:3    0  24,5G  0 part /var/snap/firefox/common/host-hunspell
+                                 /
+sdb      8:16   0     5G  0 disk 
+├─sdb1   8:17   0     2G  0 part 
+└─sdb2   8:18   0     3G  0 part 
+sdc      8:32   0     5G  0 disk 
+├─sdc1   8:33   0     2G  0 part 
+└─sdc2   8:34   0     3G  0 part 
+u26@u26-VirtualBox:/mnt/ext4$ lsblk -f
+NAME FSTYPE FSVER LABEL UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+loop0
+     squash 4.0                                                    0   100% /snap/core20/2501
+loop1
+     squash 4.0                                                    0   100% /snap/bare/5
+loop2
+     squash 4.0                                                    0   100% /snap/core20/2571
+loop3
+     squash 4.0                                                    0   100% /snap/core22/1908
+loop4
+     squash 4.0                                                    0   100% /snap/core22/1963
+loop6
+     squash 4.0                                                    0   100% /snap/gnome-3-38-2004/143
+loop7
+     squash 4.0                                                    0   100% /snap/gnome-42-2204/120
+loop8
+     squash 4.0                                                    0   100% /snap/gnome-42-2204/202
+loop9
+     squash 4.0                                                    0   100% /snap/gtk-common-themes/1535
+loop10
+     squash 4.0                                                    0   100% /snap/firefox/6103
+loop11
+     squash 4.0                                                    0   100% /snap/snap-store/959
+loop12
+     squash 4.0                                                    0   100% /snap/snapd/24505
+loop13
+     squash 4.0                                                    0   100% /snap/snapd/23771
+loop14
+     squash 4.0                                                    0   100% /snap/snapd-desktop-integration/253
+loop15
+     squash 4.0                                                    0   100% /snap/snapd-desktop-integration/83
+loop16
+     squash 4.0                                                    0   100% /snap/snap-store/1216
+loop17
+                                                                   0   100% /snap/firefox/6198
+sda                                                                         
+├─sda1
+│                                                                           
+├─sda2
+│    vfat   FAT32       FCA3-5CF7                             505,9M     1% /boot/efi
+└─sda3
+     ext4   1.0         f4023293-1e8d-46c4-97ac-d3486dc2cc66      2G    87% /var/snap/firefox/common/host-hunspell
+                                                                            /
+sdb                                                                         
+├─sdb1
+│    ext4   1.0         9e649f6d-4952-462f-8a42-e310a8ed5194                
+└─sdb2
+     xfs                fda85166-1da9-4953-8c43-3aee06335a3c                
+sdc                                                                         
+├─sdc1
+│    btrfs              8f73044a-33df-429f-bec8-0f9fff29d508                
+└─sdc2
+     ext2   1.0         dd03368e-9876-4564-a409-7f0cfaeac551                
+u26@u26-VirtualBox:/mnt/ext4$ sudo mount /dev/sdb1 /mnt/ext4
+[sudo] пароль для u26: 
+Попробуйте ещё раз.
+[sudo] пароль для u26: 
+u26@u26-VirtualBox:/mnt/ext4$ ls /mnt/ext4
+lost+found  test2.txt  test.txt
+u26@u26-VirtualBox:/mnt/ext4$ sudo vim /etc/fstab
+u26@u26-VirtualBox:/mnt/ext4$ sudo vim /etc/fstab
+u26@u26-VirtualBox:/mnt/ext4$ sudo mount -af
+u26@u26-VirtualBox:/mnt/ext4$ sudo mount -a
+mount: /mnt/sdb1: точка монтирования не существует.
+u26@u26-VirtualBox:/mnt/ext4$ sudo vim /etc/fstab
+u26@u26-VirtualBox:/mnt/ext4$ sudo mount -a
+u26@u26-VirtualBox:/mnt/ext4$ ls /mnt/ext4
+lost+found  test2.txt  test.txt
+u26@u26-VirtualBox:/mnt/ext4$ cd ..
+u26@u26-VirtualBox:/mnt$ cd xfs
+u26@u26-VirtualBox:/mnt/xfs$ sudo vim /etc/fstab
+u26@u26-VirtualBox:/mnt/xfs$ sudo vim /etc/fstab
